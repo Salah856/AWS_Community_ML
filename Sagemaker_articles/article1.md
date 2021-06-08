@@ -134,3 +134,9 @@ To understand how model training in SageMaker works, we will look at the bottom 
 • S3 bucket for model artifacts
 
 
+Training a model in SageMaker is called a training job. Any algorithm that is executed in SageMaker requires the training data to be present in an S3 bucket. This
+is because the compute instances that are used for training the model are called dynamically during model execution, and they are not persistent. This means the data that is stored there will be deleted once the job is done. Hence, we can save the data in S3, and the model will always know from where to fetch the data, by means of an S3 URL.
+
+
+The coding part, which is written in Python, consists of two sections. The first section, the helper code, helps you in processing the data, fetching the data, storing the output, etc. The second section, the training code, actually does the model training for you by applying the selected algorithm on the data.
+
