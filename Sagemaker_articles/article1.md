@@ -22,3 +22,29 @@ sharing.
 This is used for analyzing and exploring data. It does feature
 engineering and transformation of data, as well as all the other
 things required to prepare the data for machine learning. 
+
+• Auto-pilot
+Without writing a single line of code, if you want SageMaker to
+take care of your model building, either regression or classification
+problems, auto-pilot is the feature to use. It is generally for users
+who have less coding experience.
+
+• Reinforcement Learning
+This provides an interface to run a reinforcement learning
+algorithm, which runs on a reward and penalty architecture.
+
+• Batch Transform
+After building the model, if you want to get predictions on a subset
+of data or you want to preprocess a subset of data, you can use the
+batch transform feature of SageMaker.
+
+• Model Monitor
+This is used to check whether the model quality is persistent or
+deviates from the standard model.
+
+• Debugger
+This has different debugging usages, such as tracking the
+hyperparameters whose values keep changing during the model
+training. It can even alert if something abnormal happens with the
+parameters or with the data.
+
