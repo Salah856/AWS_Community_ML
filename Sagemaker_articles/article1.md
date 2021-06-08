@@ -117,4 +117,20 @@ until the new model is put into production.
 
 ![2](https://user-images.githubusercontent.com/23625821/121134073-461b1780-c833-11eb-8403-12b97f1836af.png)
 
+The figute above shows how exactly model training happens as well as how the model
+deployment happens. In this section, we will talk about the training part, while in the
+next section we will cover the deployment part. 
+
+To understand how model training in SageMaker works, we will look at the bottom part of the image. We can see that there are five sections contributing to it.
+
+• S3 bucket for training data
+
+• Helper code
+
+• Training code
+
+• Training code image
+
+• S3 bucket for model artifacts
+
 
