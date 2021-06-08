@@ -113,3 +113,8 @@ with zero downtime. This means that the old model keeps serving
 until the new model is put into production.
 
 
+## Model Training in SageMaker 
+
+![2](https://user-images.githubusercontent.com/23625821/121134073-461b1780-c833-11eb-8403-12b97f1836af.png)
+
+
