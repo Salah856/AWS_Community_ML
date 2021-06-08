@@ -140,3 +140,12 @@ is because the compute instances that are used for training the model are called
 
 The coding part, which is written in Python, consists of two sections. The first section, the helper code, helps you in processing the data, fetching the data, storing the output, etc. The second section, the training code, actually does the model training for you by applying the selected algorithm on the data.
 
+
+The training code image is a Docker container image that is stored in the ECR of AWS. It contains all the packages and software required for executing your code.
+
+It also contains your training and deployment scripts that you write. We package everything required inside one container and push it to ECR. Then, we just pass the URL of the image to the algorithm selected, and automatically the training script runs. We need to understand that SageMaker works based on Docker containers, and hence it is imperative for users to understand Docker before learning SageMaker.
+
+One thing to notice here is that the Docker image is built by you, but still we have not selected the hardware requirements. Therefore, when we call the SageMaker algorithm and when we pass the parameters such as the S3 URL and Docker Image URL, then only can we pass the type of instance that we have to choose. These instances are the EC2 instances. 
+
+Once we have chosen the instance, the Docker image is downloaded on that instance, along with the training data. Finally, the model training starts.
+
