@@ -88,3 +88,28 @@ used. Once the metric crosses the decided threshold, only then
 can it be moved toward production.
 
 
+6. Deploy the model to production
+It is easy to deploy the model in SageMaker. Generally, in normal
+scenarios one has to make APIs and then serve the model through
+an endpoint. For all this, coding requirements are necessary.
+But, in SageMaker, with minimal coding efforts the model can be
+converted into an API endpoint, and after that live or batch model
+inference can be started. Also, to deploy the model, another
+computational instance can be chosen, which generally takes less
+RAM or GPUs as compared to the training model instance.
+
+
+7. Monitor the model
+Once the model starts serving in production, we can keep
+monitoring the model’s performance. We can measure for which
+data points the model is performing well, as well as the areas it is
+not. This process is called knowing the ground truth.
+
+
+8. Repeat the process when more data comes (retraining)
+Finally, as and when new data comes, the model can be retrained,
+and all the previous steps can be repeated. All this can be done
+with zero downtime. This means that the old model keeps serving
+until the new model is put into production.
+
+
