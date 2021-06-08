@@ -52,3 +52,35 @@ parameters or with the data.
 ![1](https://user-images.githubusercontent.com/23625821/121132433-69dd5e00-c831-11eb-9da8-461916c37f03.png)
 
 
+## Understanding How SageMaker Works
+
+These are the main steps that the process follows:
+
+1. Fetch data
+This is the first step for building any machine learning model.
+Once we have decided on the problem statement that we have to
+solve, we have to accumulate all the data related to it. The data
+can be in the format of a database table, Excel sheets, text files,
+Word documents, images, etc. Once we know about all the data
+sources, these files need to be put inside a single repository so that
+the model knows about the location.
+
+2. Clean the data
+Our data can have null values, outliers, misspelled words,
+corrupted files, etc. All these things need to be explored and
+sorted out before the data is being given to the model. There are a
+lot of statistical methods as well that are used for data cleaning,
+
+
+3. Prepare data
+Once we have made our data clean, it is time to prepare our data.
+This includes all the transformations done on the data, scaling
+and normalization processes, combination of features or splitting
+of features, etc. After all these things are done, it has to be stored at
+a specific place so that the model knows the reference to the clean
+and prepared data files.
+
+The first three steps that we have seen, all these things can be
+done inside the SageMaker Jupyter Notebook, and after that, the
+cleaned data can be stored inside an S3 bucket.
+
