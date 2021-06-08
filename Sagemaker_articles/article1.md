@@ -68,3 +68,15 @@ Our data can have null values, outliers, misspelled words, corrupted files, etc.
 Once we have made our data clean, it is time to prepare our data.
 This includes all the transformations done on the data, scaling and normalization processes, combination of features or splitting of features, etc. After all these things are done, it has to be stored at a specific place so that the model knows the reference to the clean and prepared data files. The first three steps that we have seen, all these things can be done inside the SageMaker Jupyter Notebook, and after that, the cleaned data can be stored inside an S3 bucket.
 
+4. Train the model
+Once the data is prepared, we need to train the model. The first
+thing is to select the model that needs to be applied. The models
+can be chosen from the list of built-in algorithms that SageMaker
+provides, or custom models can also be used by making your own
+containers and uploading them to AWS or buying them from the
+AWS marketplace. Also, for training the model, we must decide on what kind of
+computation is required. Selection can be made based on the
+RAM size or number of GPU counts, etc. It is decided based on
+how big the dataset is or how complex the model is.
+
+
