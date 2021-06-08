@@ -79,4 +79,12 @@ computation is required. Selection can be made based on the
 RAM size or number of GPU counts, etc. It is decided based on
 how big the dataset is or how complex the model is.
 
+5. Evaluate the trained model
+Once the model is successfully trained on the dataset, it needs to
+be evaluated before deploying it for production. For this, multiple
+metrics can be used. For regression models, RMSE scores can be
+used, while for classification models precision and recall can be
+used. Once the metric crosses the decided threshold, only then
+can it be moved toward production.
+
 
