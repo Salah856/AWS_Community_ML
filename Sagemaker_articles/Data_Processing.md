@@ -73,4 +73,15 @@ print(data .columns)
 
 
 
+As we can see, there are 8,523 rows and 12 columns. Also, we can see the names of all the columns in the list given.
 
+As we have seen in the steps of processing, the next step is to impute the null values. So, let’s take a look at all the columns that have null values.
+
+
+```py
+
+data.isna().sum()
+
+```
+
+![3](https://user-images.githubusercontent.com/23625821/121324442-062a6200-c911-11eb-93ee-95450de0f787.png)
