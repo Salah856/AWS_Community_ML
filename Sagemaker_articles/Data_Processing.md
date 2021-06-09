@@ -69,3 +69,8 @@ print(data .columns)
 
 ```
 
+![1](https://user-images.githubusercontent.com/23625821/121324152-c1063000-c910-11eb-955a-4b025125cb67.png)
+
+
+
+
