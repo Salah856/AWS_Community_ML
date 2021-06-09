@@ -26,3 +26,6 @@ In this section, we will be looking at some of the basic data processing steps t
 
 8. Splitting the data into train and validation sets
 
+
+This chapter assumes that you have hands-on knowledge of Pandas, Numpy, and Scikit-Learn. These packages are required for the data processing steps. If not, then it is recommended that you explore these packages to get some hands-on experience before moving on to learning SageMaker.
+
