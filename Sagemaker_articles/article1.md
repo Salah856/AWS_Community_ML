@@ -149,3 +149,30 @@ One thing to notice here is that the Docker image is built by you, but still we 
 
 Once we have chosen the instance, the Docker image is downloaded on that instance, along with the training data. Finally, the model training starts.
 
+
+## Model Deployment in SageMaker
+
+Once the model training is done, all the learned parameters are stored in the S3 bucket and
+called model artifacts.
+
+
+The helper and inference code consists of processing scripts and prediction scripts.
+Also, it includes the format in which the predictions need to be sent or saved. For the
+predictions, the model artifacts generated during the training part are used.
+SageMaker removes the training compute requirements with the deployment
+compute requirements. This is because training may require big instances with stronger
+computational power, but for predictions we do not require that many big instances.
+Hence, the predictions can be done with smaller instances as well. This helps save a lot
+of cost.
+
+We can use the same Docker image that we built for training a model for the
+inference by just adding a few extra Python scripts that help in deployment. That may
+include using packages such as Flask, Gunicorn, etc. To start the deployment, we need
+to pass the model artifacts the URL, the ECR image URL, and the compute instance that
+we need. By giving these three parameters, the deployment is made, and an endpoint is
+created.
+
+The endpoint is a place where we send requests in a particular format, maybe CSV
+or JSON, and get the response from the model. This is called a RESTful API. The model
+that is created is served through this API, and the data on which we want predictions is
+
