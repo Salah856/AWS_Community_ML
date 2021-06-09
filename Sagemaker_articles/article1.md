@@ -177,4 +177,17 @@ The endpoint is a place where we send requests in a particular format, maybe CSV
 The model that is created is served through this API, and the data on which we want predictions is sent as a CSV, row by row, and we get the predictions in the same way. These are POST and GET requests. We can expose this endpoint to any client objects. It can be a website, a mobile app, an IOT device, or anything else. We just need some records sent to the endpoint and to get the predictions.
 
 
+Endpoints are used when we make live predictions. Hence, they keep running until
+and unless we manually stop them or add a timeout condition. But suppose we want the
+predictions for a subset of data, maybe 5,000 rows, and we don’t want a live endpoint.
+Then SageMaker supports something called a batch transform. Using this approach,
+we provide the same parameters that we provided to deployment code, but one extra
+parameter is provided. It is the link to the data on which inference is needed. This data
+is again stored in S3 and hence downloaded to the instance when prediction is required.
+After the prediction is done, predictions are stored in S3, and then the compute instance
+is stopped immediately
+
+
+![1](https://user-images.githubusercontent.com/23625821/121296641-4c6fc900-c8f1-11eb-9921-f23ac2117319.png)
+
 
