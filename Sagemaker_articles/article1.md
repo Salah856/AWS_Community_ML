@@ -172,7 +172,9 @@ to pass the model artifacts the URL, the ECR image URL, and the compute instance
 we need. By giving these three parameters, the deployment is made, and an endpoint is
 created.
 
-The endpoint is a place where we send requests in a particular format, maybe CSV
-or JSON, and get the response from the model. This is called a RESTful API. The model
-that is created is served through this API, and the data on which we want predictions is
+The endpoint is a place where we send requests in a particular format, maybe CSV or JSON, and get the response from the model. This is called a RESTful API.
+
+The model that is created is served through this API, and the data on which we want predictions is sent as a CSV, row by row, and we get the predictions in the same way. These are POST and GET requests. We can expose this endpoint to any client objects. It can be a website, a mobile app, an IOT device, or anything else. We just need some records sent to the endpoint and to get the predictions.
+
+
 
