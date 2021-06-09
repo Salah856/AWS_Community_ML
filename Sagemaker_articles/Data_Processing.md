@@ -45,4 +45,13 @@ data = pd.read_csv("Train.csv")
 
 ```
 
+Now the entire CSV sheet’s columns are saved in a data frame object named data. 
+
+Next, let’s explore the top five rows of the dataset.
+
+```py
+
+data.head()
+
+```
 
