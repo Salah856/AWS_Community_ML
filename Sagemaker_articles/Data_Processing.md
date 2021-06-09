@@ -30,3 +30,19 @@ In this section, we will be looking at some of the basic data processing steps t
 This part assumes that you have hands-on knowledge of Pandas, Numpy, and Scikit-Learn. These packages are required for the data processing steps. If not, then it is recommended that you explore these packages to get some hands-on experience before moving on to learning SageMaker.
 
 The dataset that we will be using for processing is the Big Mart sales dataset, which can be downloaded from Kaggle at  www.kaggle.com/devashish0507/big-mart-sales-prediction 
+
+
+This dataset contains a lot of information related to the sales of items in a retail shop.
+
+The task is to predict the sales of items. We will not be looking at the prediction part in this chapter. Rather, we’ll be exploring only the data processing part of the process. Let’s start by reading the train file using the Pandas framework.
+
+
+```py
+
+import pandas as pd
+
+data = pd.read_csv("Train.csv")
+
+```
+
+
