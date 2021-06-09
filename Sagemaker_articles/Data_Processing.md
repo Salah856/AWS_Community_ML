@@ -59,4 +59,13 @@ data.head()
 ![2](https://user-images.githubusercontent.com/23625821/121323970-92885500-c910-11eb-9b9b-72f923e06912.png)
 
 
+```py
+
+print(data.shape)
+
+print("*****************************************************************")
+
+print(data .columns)
+
+```
 
