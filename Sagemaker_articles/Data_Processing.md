@@ -8,4 +8,21 @@ Data processing is one of the first steps of the machine learning pipeline. As d
 
 In between receiving the raw data and feeding the data to the model, there are a lot of steps the data goes through. These steps are the data processing steps. Data processing includes feature selection, feature transformation, feature imputation, feature normalization, etc. Once all these steps are done, we proceed to splitting the data into a training set and a validation set, which are finally given to the model.
 
+In this section, we will be looking at some of the basic data processing steps that we can follow.
+
+1. Loading the raw data
+
+2. Imputing the null values, which means how to replace the null values with some actual values 
+
+3. Splitting the data into categorical and numerical data frames
+
+4. “Dummifying” categorical data
+
+5. Imputing the remaining null values
+
+6. Concatenating the categorical and numerical data frames
+
+7. Normalizing the final data frame
+
+8. Splitting the data into train and validation sets
 
