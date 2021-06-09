@@ -6,3 +6,6 @@ Data processing is one of the first steps of the machine learning pipeline. As d
 
 ## Preprocessing in Jupyter Notebook
 
+In between receiving the raw data and feeding the data to the model, there are a lot of steps the data goes through. These steps are the data processing steps. Data processing includes feature selection, feature transformation, feature imputation, feature normalization, etc. Once all these steps are done, we proceed to splitting the data into a training set and a validation set, which are finally given to the model.
+
+
