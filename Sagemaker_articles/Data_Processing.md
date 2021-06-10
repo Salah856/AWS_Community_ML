@@ -510,6 +510,23 @@ region = boto3.session.Session().region_name
 ```
 
 
+Once we have this information, we can start the process by first defining the ECR repository address and then executing some command-line scripts.
+
+```py
+processing_repository_uri = '{}.dkr.ecr.{}.amazonaws.com/{}'.format(account_id, region, ecr_repository + tag)
+```
+```sh
+
+# Create ECR repository and push docker image
+
+! docker build -t $ecr_repository docker # This builds the image
+
+! $(aws ecr get-login --region $region --registry-ids $account_id --no-include-email) # Logs in to AWS
+! aws ecr create-repository --repository-name $ecr_repository # Creates ECR Repository
+
+! docker tag {ecr_repository + tag} $processing_repository_uri # Tags the image to differentiate it from other images
+! docker push $processing_repository_uri # Pushes image to ECR
 
 
+```
 
