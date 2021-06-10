@@ -85,3 +85,15 @@ data.isna().sum()
 ```
 
 ![3](https://user-images.githubusercontent.com/23625821/121324442-062a6200-c911-11eb-93ee-95450de0f787.png)
+
+
+So, there are two columns with null values: Item_Weight and Outlet_Size. We can use the normal imputation methods provided by Scikit-Learn to impute these null values. But, instead, we will be using the help of nearby columns to fill in these null values. Let’s look at the data types of these columns, as that is going to help us in making imputation strategies.
+
+```py
+
+print(data['Item_Weight'].dtype)
+
+print(data['Outlet_Size'].dtype)
+
+```
+
