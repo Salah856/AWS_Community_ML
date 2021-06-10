@@ -448,3 +448,12 @@ training_features.head(10)
 
 
 
+##  Creating Your Own Preprocessing Code Using ScriptProcessor
+
+In the previous section, we used SkLearnProcessor, which is a built-in container provided by SageMaker. But, many times, we have to write some code that cannot only be executed in a SageMaker’s predefined containers.
+
+For that we have to make our own containers. We will be looking at making our own containers while training a machine learning model as well. In this section, we will make a container that performs the same tasks as the SKlearnProcessor container. The only difference is that it’s not prebuilt; we will build it from scratch.
+
+To use custom containers for processing jobs, we use a class provided by SageMaker named ScriptProcessor. Before giving inputs to ScriptProcessor, the first task is to create our Docker container and push it to ECR.
+
+
