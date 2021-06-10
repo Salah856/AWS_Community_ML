@@ -530,3 +530,9 @@ processing_repository_uri = '{}.dkr.ecr.{}.amazonaws.com/{}'.format(account_id, 
 
 ```
 
+If everything works fine, then your image will successfully be pushed to ECR. You can go to the ECR service and check the repository.
+
+
+![1](https://user-images.githubusercontent.com/23625821/121472567-a63fc400-c9c1-11eb-985e-2248eaa2d3bd.png)
+
+
