@@ -217,3 +217,9 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.1, rando
 
 ```
 
+This marks the last step of data processing. Now we can use it to train any kind of model that we want. The code lines that I have shown can be executed in any Jupyter Notebook, either in the localhost or in the cloud. The only requirement is that the necessary packages must be installed.
+
+
+In the next section, I will show you how to run the same code in SageMaker using the Scikit-Learn container provided by the SageMaker service. The script remains the same, but the process changes, as we have to continuously talk with the S3 bucket and define the instances as well.
+
+
