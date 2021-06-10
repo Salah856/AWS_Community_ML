@@ -131,4 +131,9 @@ cat_data.Outlet_Size.value_counts()
 
 We will do anohter thing before moving on to dummification. If we look at the categories of the ```Item Fat Content``` column. 
 
+```py
+cat_data.Item_Fat_Content.value_counts()
 
+```
+
+![1](https://user-images.githubusercontent.com/23625821/121467247-0da54600-c9b9-11eb-9dbb-bc2e4ef3fe24.png)
