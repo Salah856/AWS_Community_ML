@@ -378,3 +378,7 @@ if __name__=='__main__':
     y_test.to_csv(test_labels_output_path, header=False, index=False)
 
 ```
+
+As we can see, the previous code is the same, all we have done is defined the place where the data will be stored inside the container and the place where the output will be stored and then uploaded to the S3 bucket from there. Once this script is defined, we are good to go now. All we have to do is spin up the instantiated container, pass this script as a parameter, pass the data as a parameter, pass the directory where output files will be stored, and finally pass the
+destination S3 bucket.
+
