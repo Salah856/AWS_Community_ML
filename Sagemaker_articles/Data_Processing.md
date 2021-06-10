@@ -410,7 +410,15 @@ sklearn_processor.run(code='preprocessing.py',
 In the previous code, we have passed all the parameters. Also, we have defined the argument that tells about the split percentage. Inside the preprocessing.py script, we have code that parses this argument.
 
 
-![1](https://user-images.githubusercontent.com/23625821/121470684-de91d300-c9be-11eb-8206-584fc82f19c8.png)
+
+The processing job will take some time to finish. It first launches an instance (which is similar to booting up an operating system), and then it downloads the sklearn image on the instance. Then data is downloaded to the instance. Then the processing job starts. When the job finishes, the training and test data is stored back to S3. Then the entire operation finishes. Once the job is finished, we can get detailed information about the job by using the following script:
+
+```py
+
+preprocessing_job_description = sklearn_processor.jobs[-1].describe()
+
+```
+
 
 
 
