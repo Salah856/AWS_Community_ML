@@ -229,3 +229,16 @@ In the next section, I will show you how to run the same code in SageMaker using
 We use SageMaker to take advantage of multiple things, especially the computation power, API generation, and ease of storage. Therefore, to achieve these things, the code must be written in a specific format. We will use the same code that we saw in the previous section, but we’ll make some changes in the overall structure so that it becomes compatible with SageMaker.
 
 
+First, the data should be in the S3 bucket. We have already put our Train.csv file in the bucket, in the first section of this chapter. Once that is done, we can start writing our code. First, we will define the role of the user and the region in which we are using the SageMaker service.
+
+
+```py
+
+import boto3
+import sagemaker
+from sagemaker import get_execution_role
+
+region = boto3.session.Session().region_name
+role = get_execution_role()
+
+```
