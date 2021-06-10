@@ -483,3 +483,17 @@ The next line, ```ENV PYTHONUNBUFFERED=TRUE```, is an advanced instruction that 
 Finally, the last line, ```ENTRYPOINT ["python3"]```, tells about how our preprocessing.py file should execute.
 
 
+## Building and Pushing the Image
+
+Now that our Docker file is ready, we need to build this image and then push it to Amazon ECR, which is a Docker image repository service. To build and push this image, the following information will be required:
+
+• Account ID
+• Repository name
+• Region
+• Tag given to the image
+
+
+
+
+
+
