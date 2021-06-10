@@ -405,3 +405,12 @@ sklearn_processor.run(code='preprocessing.py',
 
 
 ```
+
+
+In the previous code, we have passed all the parameters. Also, we have defined the argument that tells about the split percentage. Inside the preprocessing.py script, we have code that parses this argument.
+
+
+![1](https://user-images.githubusercontent.com/23625821/121470684-de91d300-c9be-11eb-8206-584fc82f19c8.png)
+
+
+
