@@ -97,3 +97,4 @@ print(data['Outlet_Size'].dtype)
 
 ```
 
+The output shows that the ```Item_Weight``` column is a float, while the ```Outlet_Size``` column is categorical (or an object). 
