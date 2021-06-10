@@ -173,3 +173,27 @@ cat_data.head()
 ```
 
 ![1](https://user-images.githubusercontent.com/23625821/121467608-a6d45c80-c9b9-11eb-9d6f-14541b94f9b2.png)
+
+
+We will concatenate the two data frames, categorical and numerical, and then normalize the columns. Also, we will remove two of the columns before that, one in
+Item_Identifier and the second in Item_Sales. Item_Identifier is not really an important column, while Item_Sales will be our dependent variable; hence, it cannot be in the independent variables list.
+
+```py
+
+from sklearn.preprocessing import StandardScaler
+
+ss = StandardScaler()
+
+num_data = pd.DataFrame(ss.fit_transform(num_data.drop(['Item_Outlet_Sales'], axis=1)), columns = num_data.drop(['Item_Outlet_Sales'],axis=1).columns)
+
+cat_data = pd.DataFrame(ss.fit_transform(cat_data.drop(['Item_Identifier'], axis=1)), columns = cat_data.drop(['Item_Identifier'], axis=1).columns)
+
+final_data = pd.concat([num_data,cat_data],axis=1)
+
+final_data.head()
+
+
+```
+
+
+![1](https://user-images.githubusercontent.com/23625821/121467985-60cbc880-c9ba-11eb-9092-3be2649b81ad.png)
