@@ -355,5 +355,26 @@ if __name__=='__main__':
     
     print('Splitting data into train and test sets with ratio {}'.format(split_ratio))
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=split_ratio, random_state=0)
+    
+    # This defines the output path inside the container from where all the csv sheets will be taken and uploaded to S3 Bucket
+    
+    train_features_output_path = os.path.join('/opt/ml/processing/train', 'train_features.csv')
+    train_labels_output_path = os.path.join('/opt/ml/processing/train', 'train_labels.csv')
+    
+    test_features_output_path = os.path.join('/opt/ml/processing/test', 'test_features.csv')
+    test_labels_output_path = os.path.join('/opt/ml/processing/test', 'test_labels.csv')
+    
+    print('Saving training features to {}'.format(train_features_output_path))
+    
+    pd.DataFrame(X_train).to_csv(train_features_output_path, header=False, index=False)
+    
+    print('Saving test features to {}'.format(test_features_output_path))
+    pd.DataFrame(X_test).to_csv(test_features_output_path, header=False, index=False)
+    
+    print('Saving training labels to {}'.format(train_labels_output_path))
+    y_train.to_csv(train_labels_output_path, header=False, index=False)
+    
+    print('Saving test labels to {}'.format(test_labels_output_path))
+    y_test.to_csv(test_labels_output_path, header=False, index=False)
 
 ```
