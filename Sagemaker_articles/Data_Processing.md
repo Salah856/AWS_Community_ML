@@ -153,3 +153,14 @@ cat_data.loc[cat_data['Item_Fat_Content'] == 'low fat' , ['Item_Fat_ Content']] 
 ![1](https://user-images.githubusercontent.com/23625821/121467391-3e857b00-c9b9-11eb-8382-f912322bd6b8.png)
 
 
+Next, let’s apply label encoding on the categorical data frame. We will use the ```Scikit-Learn``` package for this.
+
+
+```py
+
+from sklearn.preprocessing import LabelEncoder
+
+le = LabelEncoder()
+cat_data = cat_data.apply(le.fit_transform)
+
+```
