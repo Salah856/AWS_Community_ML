@@ -419,6 +419,16 @@ preprocessing_job_description = sklearn_processor.jobs[-1].describe()
 
 ```
 
+Let’s use this script to get the S3 bucket location of the training and test datasets:
 
+```py
+output_config = preprocessing_job_description['ProcessingOutputConfig']
 
+for output in output_config['Outputs']:
+    if output['OutputName'] == 'train_data':
+        preprocessed_training_data = output['S3Output']['S3Uri']
+    if output['OutputName'] == 'test_data':
+        preprocessed_test_data = output['S3Output']['S3Uri']
+
+```
 
