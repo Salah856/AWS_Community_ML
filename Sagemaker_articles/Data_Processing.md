@@ -474,10 +474,12 @@ ENTRYPOINT ["python3"]
 
 The previous script must be present inside the Dockerfile.
 
-The first line, FROM python:3.7-slim-buster, tells about the minimal operating system that needs to be downloaded from Docker Hub. This only contains Python 3.7 and the minimal packages required to run Python. But, we need to install other packages as well.
+The first line, ```FROM python:3.7-slim-buster```, tells about the minimal operating system that needs to be downloaded from Docker Hub. This only contains Python 3.7 and the minimal packages required to run Python. But, we need to install other packages as well.
 
-That’s why we will use the next line, RUN pip3 install pandas==0.25.3 scikit-learn==0.21.3. This will install Pandas, Scikit-Learn, Numpy, and other important packages.
+That’s why we will use the next line, ```RUN pip3 install pandas==0.25.3 scikit-learn==0.21.3```. This will install Pandas, Scikit-Learn, Numpy, and other important packages.
 
-The next line, ENV PYTHONUNBUFFERED=TRUE, is an advanced instruction that tells Python to log messages immediately. This helps in debugging purposes.
+The next line, ```ENV PYTHONUNBUFFERED=TRUE```, is an advanced instruction that tells Python to log messages immediately. This helps in debugging purposes.
 
-Finally, the last line, ENTRYPOINT ["python3"], tells about how our preprocessing.py file should execute.
+Finally, the last line, ```ENTRYPOINT ["python3"]```, tells about how our preprocessing.py file should execute.
+
+
