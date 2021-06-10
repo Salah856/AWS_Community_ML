@@ -443,3 +443,8 @@ print('Training features shape: {}'.format(training_features.shape))
 training_features.head(10)
 
 ```
+
+![1](https://user-images.githubusercontent.com/23625821/121471058-5e1fa200-c9bf-11eb-852d-b20a398112ce.png)
+
+
+
