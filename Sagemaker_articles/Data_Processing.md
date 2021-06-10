@@ -487,10 +487,11 @@ Finally, the last line, ```ENTRYPOINT ["python3"]```, tells about how our prepro
 
 Now that our Docker file is ready, we need to build this image and then push it to Amazon ECR, which is a Docker image repository service. To build and push this image, the following information will be required:
 
-• Account ID
-• Repository name
-• Region
-• Tag given to the image
+1. Account ID
+2. Repository name
+3. Region
+4. Tag given to the image
+
 
 
 
