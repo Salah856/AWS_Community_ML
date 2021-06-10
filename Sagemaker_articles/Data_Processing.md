@@ -259,3 +259,20 @@ sklearn_processor = SKLearnProcessor(framework_version='0.20.0',
                     instance_count=1)
 
 ```
+
+
+In the previous code, we created an object called SKLearnProcessor. The parameters passed tell about the version of Scikit-Learn to use, the IAM role to be passed to the instance, the type of compute instance to be used, and finally the number of compute instances to be spinned up. Once this is done, any Python script that we write and that uses Scikit-Learn can be used inside this container.
+
+Now, let’s check whether our data is accessible from SageMaker.
+
+```py
+import pandas as pd
+
+input_data = 's3://slytherins-test/Train.csv'
+df = pd.read_csv(input_data)
+df.head()
+```
+
+```slytherins-test``` is the name of the S3 bucket that we created earlier in the article. ```Train.csv``` is the data that we uploaded. If everything works perfectly, you’ll get the output like this: 
+
+![1](https://user-images.githubusercontent.com/23625821/121469046-16e3e200-c9bc-11eb-8f52-af7807f5ddd6.png)
