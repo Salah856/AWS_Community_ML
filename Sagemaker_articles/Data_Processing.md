@@ -117,3 +117,6 @@ Now we have all the categorical columns in cat_data. We can check for the presen
   cat_data.isna().sum()
 ```
 
+![1](https://user-images.githubusercontent.com/23625821/121466633-07fb3080-c9b8-11eb-931a-6cca9dfd9eef.png)
+
+
