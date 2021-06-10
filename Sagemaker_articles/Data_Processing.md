@@ -432,3 +432,14 @@ for output in output_config['Outputs']:
 
 ```
 
+Now, we can check the output by reading the data using Pandas.
+
+```py
+
+training_features = pd.read_csv(preprocessed_training_data + 'train_features.csv', nrows=10, header=None)
+
+print('Training features shape: {}'.format(training_features.shape))
+
+training_features.head(10)
+
+```
