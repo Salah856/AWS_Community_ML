@@ -137,3 +137,19 @@ cat_data.Item_Fat_Content.value_counts()
 ```
 
 ![1](https://user-images.githubusercontent.com/23625821/121467247-0da54600-c9b9-11eb-9dbb-bc2e4ef3fe24.png)
+
+
+LF means Low Fat, reg means Regular, and low fat is just the lowercase version of Low Fat. Let’s rectify all of this.
+
+
+```py
+cat_data.loc[cat_data['Item_Fat_Content'] == 'LF' , ['Item_Fat_Content']] = 'Low Fat'
+
+cat_data.loc[cat_data['Item_Fat_Content'] == 'reg' , ['Item_Fat_Content']] = 'Regular'
+
+cat_data.loc[cat_data['Item_Fat_Content'] == 'low fat' , ['Item_Fat_ Content']] = 'Low Fat'
+```
+
+![1](https://user-images.githubusercontent.com/23625821/121467391-3e857b00-c9b9-11eb-8382-f912322bd6b8.png)
+
+
