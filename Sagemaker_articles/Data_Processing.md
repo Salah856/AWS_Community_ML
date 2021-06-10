@@ -197,3 +197,23 @@ final_data.head()
 
 
 ![1](https://user-images.githubusercontent.com/23625821/121467985-60cbc880-c9ba-11eb-9092-3be2649b81ad.png)
+
+
+Now, we have our final data ready. We have used a standard scaler class to normalize all the numerical values to their z-scores. We will be using final_data as independent variables, while we will extract Item Sales as dependent variables.
+
+```py
+X = final_data
+y = data['Item_Outlet_Sales']
+
+```
+
+The last step is to get our training and validation sets. For this we will use the class model_selection provided by Scikit-Learn. We will take 10 percent of our data as a validation set while remaining as a test set.
+
+```py
+
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.1, random_state=5)
+
+```
+
