@@ -382,3 +382,26 @@ if __name__=='__main__':
 As we can see, the previous code is the same, all we have done is defined the place where the data will be stored inside the container and the place where the output will be stored and then uploaded to the S3 bucket from there. Once this script is defined, we are good to go now. All we have to do is spin up the instantiated container, pass this script as a parameter, pass the data as a parameter, pass the directory where output files will be stored, and finally pass the
 destination S3 bucket.
 
+
+```py
+
+from sagemaker.processing import ProcessingInput, ProcessingOutput
+
+sklearn_processor.run(code='preprocessing.py',
+           inputs=[ProcessingInput(
+             source=input_data,
+             destination='/opt/ml/processing/input')],
+           outputs=[ProcessingOutput(output_name='train_data',
+                     source='/opt/ml/processing/train',
+                     destination='s3://slytherins-test/'
+                     ),
+                    ProcessingOutput(output_name='test_data',
+                     source='/opt/ml/processing/test',
+                     destination='s3://slytherins-test/'
+                     )
+                   ],
+           arguments=['--train-test-split-ratio', '0.1']
+         )
+
+
+```
