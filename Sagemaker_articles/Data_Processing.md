@@ -493,6 +493,21 @@ Now that our Docker file is ready, we need to build this image and then push it 
 4. Tag given to the image
 
 
+All this information can be initialized using the following script:
+
+```py
+
+import boto3
+
+account_id = boto3.client('sts').get_caller_identity().get('Account')
+
+ecr_repository = 'sagemaker-processing-container'
+
+tag = ':latest'
+
+region = boto3.session.Session().region_name
+
+```
 
 
 
