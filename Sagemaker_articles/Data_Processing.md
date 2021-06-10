@@ -457,3 +457,18 @@ For that we have to make our own containers. We will be looking at making our ow
 To use custom containers for processing jobs, we use a class provided by SageMaker named ScriptProcessor. Before giving inputs to ScriptProcessor, the first task is to create our Docker container and push it to ECR.
 
 
+## Creating a Docker Container
+
+For this we will be creating a file named Dockerfile with no extension. Inside this we will be downloading an image of a minimal operating system and then install our packages inside it. So, our minimal operating system will be Linux based, and we will have Python, Scikit-Learn, and Pandas installed inside it.
+
+
+```dockerfile
+
+FROM python:3.7-slim-buster
+RUN pip3 install pandas==0.25.3 scikit-learn==0.21.3
+ENV PYTHONUNBUFFERED=TRUE
+ENTRYPOINT ["python3"]
+
+```
+
+
