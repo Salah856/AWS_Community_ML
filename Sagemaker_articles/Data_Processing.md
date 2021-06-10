@@ -248,3 +248,14 @@ The Boot3 package tries to extract the region name automatically if we are using
 
 Now that we have defined the region and role, the next step will be to define our Scikit-Learn container. As mentioned in the first part of the book, SageMaker operates on Docker containers. All the built-in algorithms are nothing but Docker containers, and even the custom algorithm must be put inside the Docker container and uploaded to ECR. Since we will be using Scikit-Learn to process our data, already SageMaker has a processing container for that. We just need to instantiate it and then use it.
 
+
+```py
+
+from sagemaker.sklearn.processing import SKLearnProcessor
+
+sklearn_processor = SKLearnProcessor(framework_version='0.20.0',
+                    role=role,
+                    instance_type='ml.m5.xlarge',
+                    instance_count=1)
+
+```
