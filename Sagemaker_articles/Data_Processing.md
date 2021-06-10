@@ -98,3 +98,16 @@ print(data['Outlet_Size'].dtype)
 ```
 
 The output shows that the ```Item_Weight``` column is a float, while the ```Outlet_Size``` column is categorical (or an object). 
+
+
+What we will do next is to first split the data into numerical and categorical data frames and then impute the null values.
+
+```py
+
+ import numpy as np
+ 
+ cat_data = data.select_dtypes(object)
+ num_data = data.select_dtypes(np.number)
+
+```
+
