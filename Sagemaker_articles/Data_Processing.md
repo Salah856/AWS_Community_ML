@@ -127,3 +127,4 @@ cat_data.Outlet_Size.value_counts()
 
 ```
 
+![1](https://user-images.githubusercontent.com/23625821/121466801-527cad00-c9b8-11eb-8a54-845a5864db45.png)
