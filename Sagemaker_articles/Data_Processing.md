@@ -223,3 +223,9 @@ This marks the last step of data processing. Now we can use it to train any kind
 In the next section, I will show you how to run the same code in SageMaker using the Scikit-Learn container provided by the SageMaker service. The script remains the same, but the process changes, as we have to continuously talk with the S3 bucket and define the instances as well.
 
 
+
+## Preprocessing Using SageMaker’s Scikit-Learn Container
+
+We use SageMaker to take advantage of multiple things, especially the computation power, API generation, and ease of storage. Therefore, to achieve these things, the code must be written in a specific format. We will use the same code that we saw in the previous section, but we’ll make some changes in the overall structure so that it becomes compatible with SageMaker.
+
+
