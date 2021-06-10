@@ -111,3 +111,9 @@ What we will do next is to first split the data into numerical and categorical d
 
 ```
 
+Now we have all the categorical columns in cat_data. We can check for the presence of null values again. 
+
+```py
+  cat_data.isna().sum()
+```
+
