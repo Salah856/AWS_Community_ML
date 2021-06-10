@@ -242,3 +242,7 @@ region = boto3.session.Session().region_name
 role = get_execution_role()
 
 ```
+
+The Boot3 package tries to extract the region name automatically if we are using the SageMaker notebook. If we are working from the localhost notebook, then it needs to be custom defined. We will look at that part in the last part of this book. ```get_execution_role()``` extracts the current role with which the user has signed in. It can be the root user or IAM role.
+
+
