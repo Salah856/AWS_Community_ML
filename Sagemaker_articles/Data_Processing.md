@@ -168,4 +168,8 @@ cat_data = cat_data.apply(le.fit_transform)
 ![1](https://user-images.githubusercontent.com/23625821/121467555-8b695180-c9b9-11eb-8f22-0f5ce192094c.png)
 
 
+```py
+cat_data.head()
+```
 
+![1](https://user-images.githubusercontent.com/23625821/121467608-a6d45c80-c9b9-11eb-9d6f-14541b94f9b2.png)
