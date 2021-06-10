@@ -120,3 +120,10 @@ Now we have all the categorical columns in cat_data. We can check for the presen
 ![1](https://user-images.githubusercontent.com/23625821/121466633-07fb3080-c9b8-11eb-931a-6cca9dfd9eef.png)
 
 
+So, the null value still exists. If we look at the categories present in the ```Outlet_Size``` columns, we will see there are three. 
+
+```py 
+cat_data.Outlet_Size.value_counts()
+
+```
+
