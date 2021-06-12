@@ -618,3 +618,8 @@ pip install s3fs
 
 ```
 
+Once the installation finishes, we need to configure the credentials of AWS. For this, we will run the following command:
+
+```sh
+aws configure
+```
