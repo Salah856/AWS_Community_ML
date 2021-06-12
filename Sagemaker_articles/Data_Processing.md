@@ -695,3 +695,69 @@ Once we have made changes in the Dockerfile, we will make changes to the script 
 
 
 ```
+
+Once this step is done, we will be ready to run our Boto3 processing job.
+
+## Creating a Processing Job
+
+In a nutshell, we need information about four sections to create a processing job using Boto3.
+
+• Input data information (ProcessingInput)
+• Output data information (ProcessingOutput)
+• Resource information (ProcessingResources)
+• Container information (AppSpecification)
+
+
+As you can see in the following code, all the previous information is provided. The code is again similar to the code we saw in the previous section; it is just that Boto3 needs information that should be manually put inside it as parameters, while when we run the code from inside SageMaker, most of the information is automatically extracted.
+
+
+```py
+
+response = client.create_processing_job(       # Initialize the method
+    ProcessingInputs=[
+        {
+            'InputName': "Training_Input",    # Give Input Job a name
+            'S3Input': {
+                'S3Uri': input_data,          # URL from where the data needs to be taken
+                'LocalPath': '/opt/ml/processing/input',  # Local directory where the data will be downloaded
+                'S3DataType': 'S3Prefix',  # What kind of Data is it?
+                'S3InputMode': 'File'    # Is it a file or a continuous stream of data?
+            }
+        },
+    ],
+    ProcessingOutputConfig={
+        'Outputs': [
+            {
+                'OutputName': 'Training',  # Giving Output Name
+                'S3Output': {
+                    'S3Uri': 's3://slytherins-test/', # Where the output needs to be stored
+                    'LocalPath': '/opt/ml/processing/train',  # Local directory where output needs to be searched
+                    'S3UploadMode': 'EndOfJob'  # Upload is done when the job finishes
+                },
+                'OutputName': 'Testing',
+                'S3Output': {
+                    'S3Uri': 's3://slytherins-test/',
+                    'LocalPath': '/opt/ml/processing/test',
+                      'S3UploadMode': 'EndOfJob'
+                }
+            },
+        ],
+    },
+    ProcessingJobName='preprocessing-job-test',    # Giving a name to theentire job. It should be unique
+    ProcessingResources={
+        'ClusterConfig': {
+            'InstanceCount': 1,  # How many instances are required?
+            'InstanceType': 'ml.m5.xlarge',   # What's the instance type?
+            'VolumeSizeInGB': 5       # What should be the instance size?
+        }
+    },
+    AppSp={
+        'ImageUri': '809912564797.dkr.ecr.us-east-2.amazonaws.com/sagemaker-processing-container:latest', # Docker Image URL
+        'ContainerEntrypoint': [
+            'Python3','preprocessing.py'  # How to run the script
+        ]
+    },
+    RoleArn='arn:aws:iam::809912564797:role/sagemaker-full-accss', # IAM role definition
+)
+
+```
