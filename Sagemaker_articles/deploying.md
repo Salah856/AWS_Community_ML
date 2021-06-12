@@ -79,3 +79,32 @@ s3_train_data = 's3://{}/{}/train/{}'.format(bucket, prefix, key)
 print('uploaded training data location: {}'.format(s3_train_data))
 
 ```
+
+
+This will upload the data to S3 and close the buffer that we created. Now, our basic steps are done. All we need to do is to make the connection and train the model. The first step will be to initialize our linear learner algorithm Docker container.
+
+
+```py
+
+from sagemaker.amazon.amazon_estimator import get_image_uri
+
+session = boto3.Session()
+
+container = get_image_uri(session.region_name, 'linear-learner')
+
+```
+
+After initializing, let’s pass the required parameters for linear learner and initialize the algorithm.
+
+```py
+
+linear = sagemaker.estimator.Estimator(container,
+                     role,
+                     train_instance_count=1,
+                     train_instance_type='ml.m4.xlarge',
+                      output_path=output_location,
+                      sagemaker_session=session)
+                      
+
+```
+
