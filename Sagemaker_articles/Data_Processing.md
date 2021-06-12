@@ -568,3 +568,21 @@ script_processor.run(code='preprocessing.py',
 
 ```
 
+You will find the code to be almost the same as the ```SKLearnProcessor``` code. It will give the same output as well. Finally, once the processing job is done, we can check the output again in the same way.
+
+
+```py
+
+preprocessing_job_description = script_processor.jobs[-1].describe()
+
+output_config = preprocessing_job_description['ProcessingOutputConfig']
+
+for output in output_config['Outputs']:
+    if output['OutputName'] == 'output-1':
+        preprocessed_training_data = output['S3Output']['S3Uri']
+    if output['OutputName'] == 'output-2':
+        preprocessed_test_data = output['S3Output']['S3Uri']
+        
+
+
+```
