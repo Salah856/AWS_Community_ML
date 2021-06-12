@@ -637,4 +637,17 @@ Once we provide this information, we can easily use Boto3 to connect with the AW
 ![1](https://user-images.githubusercontent.com/23625821/121767707-4a5c7300-cb5a-11eb-822a-436af1a88ee2.png)
 
 
+Once this part is done, we can start our Jupyter Notebook (local system notebook) and create a notebook using the same environment inside which we have installed all the packages and configured AWS.
 
+
+### Initializing Boto3
+Inside the notebook, the first step will be to initialize Boto3. For this we will use the following script:
+
+```py 
+import boto3
+import s3fs 
+
+region = boto3.session.Session().region_name
+client = boto3.client('sagemaker')
+
+```
