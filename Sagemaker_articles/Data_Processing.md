@@ -602,7 +602,19 @@ training_features.head(n=10)
 ```
 
 ## Using Boto3 to Run Processing Jobs
+
 As mentioned, we use the Boto3 package to access the services of AWS from any other computer, including your localhost. So, in this section, we will be running the custom Docker container script that we saw in the previous section, using Boto3.
 
 
+### Installing Boto3
+
+The first step for using Boto3 is to install it inside the localhost environment. Along with Boto3, we have to install awscli, which will help us in authentication with AWS and s3fs, which in turn will help us in talking with the S3 bucket. To install it, we will be using pip, as shown here:
+
+```sh
+
+pip install boto3
+pip install awscli
+pip install s3fs
+
+```
 
