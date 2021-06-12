@@ -138,8 +138,7 @@ It will take some time for the model to be trained. Once the model is trained, w
 
 ```py
 
-linear_predictor = linear.deploy(initial_instance_count=1,
-                   instance_type='ml.m4.xlarge')
+linear_predictor = linear.deploy(initial_instance_count=1, instance_type='ml.m4.xlarge')
 
 ```
 
