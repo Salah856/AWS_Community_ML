@@ -180,3 +180,20 @@ predictions = np.array(predictions)
 
 ```
 
+
+The previous code takes 100 rows at a time and then stores the predictions for them in the variable predictions. We can now look at the model metrics using the following code:
+
+```py
+
+from sklearn.metrics import precision_score, recall_score, f1_score
+
+print(precision_score(labels, predictions, average='weighted'))
+print(recall_score(labels, predictions, average='weighted'))
+print(f1_score(labels, predictions, average='weighted'))
+
+```
+
+![1](https://user-images.githubusercontent.com/23625821/121775080-b99b8c80-cb85-11eb-9d7f-54e442f96f27.png)
+
+
+
