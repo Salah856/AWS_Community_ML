@@ -7,7 +7,7 @@ Part 1: https://dev.to/aws-builders/intro-to-amazon-sagemaker-3gp5
 
 Part 2: https://dev.to/aws-builders/data-processing-in-aws-sagemaker-20gi
 
-<!-- Part 3 -->
+Part 3: https://dev.to/aws-builders/building-deploying-a-machine-learning-model-using-linear-learner-3p7c
 
 <!-- Part 4 -->
 
