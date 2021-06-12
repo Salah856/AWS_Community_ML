@@ -623,3 +623,10 @@ Once the installation finishes, we need to configure the credentials of AWS. For
 ```sh
 aws configure
 ```
+This will ask you for the following four inputs:
+
+• AWS access key
+• AWS secret access key
+• Default region name
+• Default output format
+
