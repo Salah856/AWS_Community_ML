@@ -134,4 +134,12 @@ You will see the output given next at the start, and then the training will star
 ![1](https://user-images.githubusercontent.com/23625821/121774888-d71c2680-cb84-11eb-8a96-a63247899018.png)
 
 
+It will take some time for the model to be trained. Once the model is trained, we can deploy the model as an endpoint, and then we can start the testing. To deploy the model, we will use the deploy function.
+
+```py
+
+linear_predictor = linear.deploy(initial_instance_count=1,
+                   instance_type='ml.m4.xlarge')
+
+```
 
