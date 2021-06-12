@@ -142,3 +142,15 @@ linear_predictor = linear.deploy(initial_instance_count=1, instance_type='ml.m4.
 
 ```
 
+
+It will take some time to deploy the model and then create the endpoint. Once done, we can start the prediction. To start the prediction, we have to first tell what kind of data the endpoint will be receiving. Then we will have to serialize the data. This format helps to efficiently transfer and store the data, regaining the original data perfectly. We can serialize our test data by using the following code:
+
+```py
+
+from sagemaker.predictor import csv_serializer, json_deserializer
+
+linear_predictor.content_type = 'text/csv'
+linear_predictor.serializer = csv_serializer
+linear_predictor.deserializer = json_deserializer
+
+```
