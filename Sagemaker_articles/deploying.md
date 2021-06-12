@@ -108,3 +108,16 @@ linear = sagemaker.estimator.Estimator(container,
 
 ```
 
+As we know, the regression algorithms have a few hyperparameters that need to be defined, such as the number of variables, batch size, etc. We will next define these values.
+
+
+```py
+
+linear.set_hyperparameters(feature_dim=11,
+              predictor_type='multiclass_classifier',
+              mini_batch_size=100,
+              num_classes=4)
+           
+```
+
+
