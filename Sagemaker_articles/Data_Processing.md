@@ -553,6 +553,18 @@ script_processor = ScriptProcessor(command=['python3'],
           instance_count=1,
           instance_type='ml.m5.xlarge')
 
+input_data = 's3://slytherins-test/Train.csv'
+
+script_processor.run(code='preprocessing.py',
+          inputs=[ProcessingInput(
+            source=input_data,
+            destination='/opt/ml/processing/input')],
+          outputs=[ProcessingOutput(source='/opt/ml/processing/train', destination='s3://slytherins-test/'),
+            ProcessingOutput(source='/opt/ml/processing/test', destination='s3://slytherins-test/')]
+            
+         )
+
+
 
 ```
 
