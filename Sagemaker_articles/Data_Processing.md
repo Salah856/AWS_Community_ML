@@ -777,3 +777,8 @@ This will give us detailed information about the job:
 
 
 
+You will find the key ProcessingJobStatus, which tells about the status, and if the job fails, you will get a reason for the failure key as well. So, now we have seen the three ways of data processing provided by SageMaker.
+
+
+
+
