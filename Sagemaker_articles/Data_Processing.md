@@ -601,3 +601,8 @@ training_features.head(n=10)
 
 ```
 
+## Using Boto3 to Run Processing Jobs
+As mentioned, we use the Boto3 package to access the services of AWS from any other computer, including your localhost. So, in this section, we will be running the custom Docker container script that we saw in the previous section, using Boto3.
+
+
+
