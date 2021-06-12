@@ -154,3 +154,29 @@ linear_predictor.serializer = csv_serializer
 linear_predictor.deserializer = json_deserializer
 
 ```
+
+
+Now, whatever data we will be sending to the endpoint, it will be serialized and sent to the model. A prediction will come in a serialized manner, and then we will see the data in its original structure. To predict, we will be using the test data.
+
+```py
+
+result = linear_predictor.predict(test_vectors[0])
+print(result)
+
+```
+
+The previous line gives us the prediction for a single row. But if we want predictions for multiple rows, we can use the following code:
+
+```py
+import numpy as np
+
+predictions = []
+
+for array in np.array_split(test_vectors, 100):
+    result = linear_predictor.predict(array)
+    predictions += [r['predicted_label'] for r in result['predictions']]
+
+predictions = np.array(predictions)
+
+```
+
