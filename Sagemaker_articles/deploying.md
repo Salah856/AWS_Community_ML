@@ -197,3 +197,11 @@ print(f1_score(labels, predictions, average='weighted'))
 
 
 
+Remember that once the endpoints are created, they will always run, until we stop them manually or through a script. After running all the previous code, our endpoint is still running. So, we’ll stop it so that it will not incur us any cost.
+
+```py
+
+sagemaker.Session().delete_endpoint(linear_predictor.endpoint)
+
+```
+
