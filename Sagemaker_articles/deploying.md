@@ -64,3 +64,18 @@ buf.seek(0)
 
 ```
 
+The previous lines convert the data into RecordIO format and then open the temporary file so that it can be directly inserted into S3. A RecordIO file is used by
+breaking a big file into chunks and then using these chunks for analysis. This file helps us create streaming jobs in SageMaker, which makes the training fast. To send it, we will use the next lines of code:
+
+
+```py
+
+key = 'recordio-pb-data'
+
+boto3.resource('s3').Bucket(bucket).Object(os.path.join(prefix, 'train', key)).upload_fileobj(buf)
+
+s3_train_data = 's3://{}/{}/train/{}'.format(bucket, prefix, key)
+
+print('uploaded training data location: {}'.format(s3_train_data))
+
+```
