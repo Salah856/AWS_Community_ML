@@ -536,3 +536,23 @@ If everything works fine, then your image will successfully be pushed to ECR. Yo
 ![1](https://user-images.githubusercontent.com/23625821/121472567-a63fc400-c9c1-11eb-985e-2248eaa2d3bd.png)
 
 
+## Using a ScriptProcessor Class
+
+Now that our image is ready, we can start using the ```ScriptProcessor class```. We will execute the same code, ```preprocessing.py```, inside this container. Just like how we did in ```SKLearnProcessor```, we will create an object of the class first.
+
+```py
+
+from sagemaker.processing import ScriptProcessor, ProcessingInput, ProcessingOutput
+from sagemaker import get_execution_role
+
+role = get_execution_role()
+
+script_processor = ScriptProcessor(command=['python3'],
+          image_uri=processing_repository_uri,
+          role=role,
+          instance_count=1,
+          instance_type='ml.m5.xlarge')
+
+
+```
+
