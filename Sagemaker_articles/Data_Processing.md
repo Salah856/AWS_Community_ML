@@ -651,3 +651,47 @@ region = boto3.session.Session().region_name
 client = boto3.client('sagemaker')
 
 ```
+
+## Making Dockerfile Changes and Pushing the Image
+
+Now, we will use the Boto3 API to call the processing job method. This will create the same processing job that we saw in the previous section. But, minor changes will be required, and we will explore them one by one.
+
+We will use the method create_processing_job to run the data processing job. To learn more about this method, or all the methods related to SageMaker provided by
+Boto3, you can visit https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/sagemaker.html . 
+
+
+But, before that, we have to make some changes in our Docker container and our processing Python file. For the Docker container, we will need to copy our
+preprocessing.py script inside it so that the Boto3 method can run the script directly. For this we will make the following changes to our Dockerfile:
+
+```sh 
+
+FROM python:3.7-slim-buster
+RUN pip3 install pandas==0.25.3 scikit-learn==0.21.3
+ENV PYTHONUNBUFFERED=TRUE
+ENV PATH="/opt/ml/code:${PATH}"
+COPY preprocessing.py /opt/ml/code/preprocessing.py
+WORKDIR /opt/ml/code
+
+
+```
+
+We have added three new lines to our existing Dockerfile. The line ENV PATH="/opt/ml/code:${PATH}" sets up the environment path to /opt/ml/code. We will be placing our script, preprocessing.py, inside it with COPY preprocessing.py /opt/ml/code/preprocessing.py. Finally, we will be making our working directory the same folder: WORKDIR /opt/ml/code. This is required so that the Docker container will know where the script file is present, and it will help in its execution.
+
+
+Once we have made changes in the Dockerfile, we will make changes to the script that builds the image and pushes it to the ECR. The only change that we need to do is add a line that gives the permission to the container to play with the preprocessing.py script. Otherwise, Docker may not have the permission to open and look at its contents.
+
+```sh 
+
+# Create ECR repository and push docker image
+
+! chmod +x docker/preprocessing.py # This line gives read and write access to the preprocessing script
+! docker build -t $ecr_repository docker # This builds the image
+
+! $(aws ecr get-login --region $region --registry-ids $account_id --no-include-email) # Logs in to AWS
+! aws ecr create-repository --repository-name $ecr_repository # Creates ECR Repository
+
+! docker tag {ecr_repository + tag} $processing_repository_uri # Tags the image to differentiate it from other images
+! docker push $processing_repository_uri # Pushes image to ECR
+
+
+```
