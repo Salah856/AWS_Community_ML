@@ -45,6 +45,22 @@ y_final = temp.transform(y_binned)
 
 ```
 
+Our next step will be to store the data in S3. For our linear learner algorithm, we will use a data format called the RecordIO-Protobuf format. Using this data format helps you with a faster training time, and you can train models in live data mode (called pipe mode). We can convert our independent and target variables to RecordIO format using the following lines of code:
 
 
+```py
+
+import io
+import numpy as np
+import sagemaker.amazon.common as smac
+
+vectors = np.array(X.values, dtype='float32')
+labels = np.array(y_final, dtype='float32')
+
+buf = io.BytesIO()
+smac.write_numpy_to_dense_tensor(buf, vectors, labels)
+
+buf.seek(0)
+
+```
 
