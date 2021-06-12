@@ -586,3 +586,18 @@ for output in output_config['Outputs']:
 
 
 ```
+
+
+```py
+
+import pandas as pd
+
+training_features = pd.read_csv(preprocessed_training_data + 'train_features.csv', nrows=10, header=None)
+
+print('Training features shape: {}'.format(training_features.shape)) 
+
+training_features.head(n=10)
+
+
+```
+
