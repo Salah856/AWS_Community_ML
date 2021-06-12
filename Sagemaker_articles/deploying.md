@@ -31,3 +31,20 @@ y_binned = pd.cut(y['Item_Outlet_Sales'], 4, labels=['A', 'B', 'C', 'D'])
 
 
 ```
+
+Now that we have our categorical column as a target variable, we will apply label encoding on it so that each category can be represented by an integer.
+
+
+```py
+
+from sklearn.preprocessing import LabelEncoder
+
+le = LabelEncoder()
+temp = le.fit(y_binned)
+y_final = temp.transform(y_binned)
+
+```
+
+
+
+
