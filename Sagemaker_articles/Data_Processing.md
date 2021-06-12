@@ -743,16 +743,17 @@ response = client.create_processing_job(       # Initialize the method
             },
         ],
     },
-    ProcessingJobName='preprocessing-job-test',    # Giving a name to theentire job. It should be unique
+    ProcessingJobName='preprocessing-job-test',  # Giving a name to the entire job. It should be unique
     ProcessingResources={
         'ClusterConfig': {
             'InstanceCount': 1,  # How many instances are required?
             'InstanceType': 'ml.m5.xlarge',   # What's the instance type?
-            'VolumeSizeInGB': 5       # What should be the instance size?
+            'VolumeSizeInGB': 5   # What should be the instance size?
         }
     },
     AppSp={
-        'ImageUri': '809912564797.dkr.ecr.us-east-2.amazonaws.com/sagemaker-processing-container:latest', # Docker Image URL
+        'ImageUri': '809912564797.dkr.ecr.us-east-2.amazonaws.com/sagemaker-processing-container:latest',
+             # Docker Image URL
         'ContainerEntrypoint': [
             'Python3','preprocessing.py'  # How to run the script
         ]
@@ -761,3 +762,18 @@ response = client.create_processing_job(       # Initialize the method
 )
 
 ```
+
+The previous code will start the processing job. But, you will not see any output. To know the status of the job, you can use CloudWatch, which I will talk about in the next section. For now, we will get help from the Boto3 method describe_processing_job to get the information. We can do this by writing the following code:
+
+```py
+
+client.describe_processing_job(ProcessingJobName='processing-job-test')
+
+```
+
+This will give us detailed information about the job: 
+
+![1](https://user-images.githubusercontent.com/23625821/121768181-28182480-cb5d-11eb-8599-4a21d3ab7138.png)
+
+
+
