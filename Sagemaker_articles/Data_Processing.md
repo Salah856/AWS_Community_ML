@@ -630,3 +630,11 @@ This will ask you for the following four inputs:
 • Default region name
 • Default output format
 
+
+Once we provide this information, we can easily use Boto3 to connect with the AWS services. I have already shown you how to get the access key and secret access key when creating the IAM roles. The default region name will be us-east-2, but you can recheck this by looking at the top-right corner of your AWS management console. It will tell you the location.
+
+
+![1](https://user-images.githubusercontent.com/23625821/121767707-4a5c7300-cb5a-11eb-822a-436af1a88ee2.png)
+
+
+
