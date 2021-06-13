@@ -55,3 +55,23 @@ container = sagemaker.amazon.amazon_estimator.get_image_uri(region_name, "blazin
 
 ```
 
+Once the container is ready, we have to initialize the instance/resource.
+```py
+
+bt_model = sagemaker.estimator.Estimator(container,
+                     role,
+                     train_instance_count=1,
+                     train_instance_type='ml.m4.xlarge',
+                     train_volume_size = 5,
+                     train_max_run = 360000,
+                     input_mode= 'File',
+                     output_path=s3_output_location,
+                     sagemaker_session=sess)
+                     
+```
+
+Don’t forget to define the S3 output location before running this code.
+
+```py
+s3_output_location = 's3://{}/{}/output'.format(bucket, prefix)
+```
