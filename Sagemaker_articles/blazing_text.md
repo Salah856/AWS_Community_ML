@@ -131,3 +131,4 @@ Here we will get the output, which will be the word vectors generated for the wo
 sess.delete_endpoint(bt_endpoint.endpoint)
 ```
 
+
