@@ -75,3 +75,25 @@ Don’t forget to define the S3 output location before running this code.
 ```py
 s3_output_location = 's3://{}/{}/output'.format(bucket, prefix)
 ```
+
+Remember, the ml.m4.xlarge instance comes under the free tier. So if you want to play around with different algorithms, always use this instance. Next, we will
+set up the algorithm hyperparameters.
+
+```py
+
+bt_model.set_hyperparameters(mode="batch_skipgram",
+              epochs=5,
+              min_count=5,
+              sampling_threshold=0.0001,
+              learning_rate=0.05,
+              window_size=5,
+              vector_dim=100,
+              negative_samples=5,
+              batch_size=11,
+              evaluation=True,
+              subwords=False)
+              
+
+```
+
+
