@@ -10,3 +10,7 @@ The blazing text algorithm is a highly optimized version of the word2vec algorit
 
 The skip gram algorithm is used to generate word vectors by finding words that are most similar to each other. This algorithm tries to understand the context of a sentence. To do that, it takes a word as input and then tries to predict all the words that have similar context.
 
+
+![1](https://user-images.githubusercontent.com/23625821/121797858-37fa3c00-cc23-11eb-8e81-0ddefbbb2bc4.png)
+
+
