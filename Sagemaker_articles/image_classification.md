@@ -206,3 +206,12 @@ while status !='Completed' and status!='Failed':
     print(status)
 
 ```
+
+s shown, this code will start the training and then inform us whether the training successfully finished. Once the training is finished, we will deploy the model and then do the predictions. 
+
+```py
+
+endpoint_response= sagemaker.create_endpoint(EndpointName="image-classification-caltech-endpoint", EndpointConfigName="image-classification-caltech-config")
+    
+```    
+ 
