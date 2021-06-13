@@ -178,7 +178,7 @@ training_params = {
 
 The following are some of the unique parameters in this algorithm:
 
-1. ContentType is application/x-recordio. As I already mentioned, image classification expects only the RecordIO-Protobuf data format.
+1. ContentType is application/x-recordio. As already mentioned, image classification expects only the RecordIO-Protobuf data format.
 
 2. S3DataDistributionType is fully replicated, which means if we use multiple instances for parallel training, then the dataset will be replicated in all the instances.
 
@@ -187,3 +187,22 @@ The following are some of the unique parameters in this algorithm:
 
 Once we are done with algorithm specifications, we will start the training process.
 
+
+```py
+
+sagemaker = boto3.client(service_name='sagemaker')
+
+sagemaker.create_training_job(**training_params)
+
+status = sagemaker.describe_training_job(TrainingJobName=job_name)['TrainingJobStatus']
+
+print(status)
+
+while status !='Completed' and status!='Failed':
+    time.sleep(60)
+    
+    status = client.describe_training_job(TrainingJobName=job_name)['TrainingJobStatus']
+    
+    print(status)
+
+```
