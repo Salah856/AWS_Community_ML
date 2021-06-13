@@ -59,3 +59,18 @@ For training: http://data.mxnet.io/data/caltech-256/caltech-256-60-train.rec.
 For validation: http://data.mxnet.io/data/caltech-256/caltech-256-60-val.rec. 
 
 
+Let’s move these images to our S3 bucket. These images are in RecordIO-Protobuf format, as the algorithm expects them in that format only. Let’s create a function this time that uploads files to S3.
+
+
+```py
+
+def upload_to_s3(channel, file):
+
+    s3 = boto3.resource('s3')
+    data = open(file, "rb")
+    
+    key = channel + '/' + file
+    s3.Bucket(bucket).put_object(Key=key, Body=data)
+
+```
+
