@@ -51,3 +51,11 @@ training_image = get_image_uri(boto3.Session().region_name, 'image-classificatio
 
 ```
 
+
+Already we have these images categorized into train and validation sets. We can use these images directly. We can download the images from here:
+
+For training: http://data.mxnet.io/data/caltech-256/caltech-256-60-train.rec.
+
+For validation: http://data.mxnet.io/data/caltech-256/caltech-256-60-val.rec. 
+
+
