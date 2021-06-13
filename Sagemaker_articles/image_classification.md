@@ -28,3 +28,9 @@ the gradients turn to zero, and hence the learning stops. This phenomenon is cal
 
 ![1](https://user-images.githubusercontent.com/23625821/121798599-8ad5f280-cc27-11eb-9e65-c94a8aab6eb7.png)
 
+
+ResNet’s major key is that it allows the flow of gradients in the backward direction. Also, the inputs are bypassed every two convolutions. These two workarounds in CNNs solve the problem of vanishing gradients. To learn more about ResNet, please visit https://arxiv.org/pdf/1512.03385.pdf.
+
+
+## SageMaker Application of Image Classification
+
