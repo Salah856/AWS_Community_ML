@@ -118,5 +118,59 @@ job_name_prefix = 'imageclassification'
 
 job_name = job_name_prefix + '-' + time.strftime('-%Y-%m-%d-%H-%M-%S', time.gmtime())
 
+training_params = {
+    "AlgorithmSpecification": {
+        "TrainingImage": training_image,
+        "TrainingInputMode": "File"
+    },
+    "RoleArn": role,
+    "OutputDataConfig": {
+        "S3OutputPath": 's3://{}/{}/output'.format(bucket, job_name_prefix)
+    },
+    "ResourceConfig": {
+        "InstanceCount": 1,
+        "InstanceType": "ml.p2.xlarge",
+        "VolumeSizeInGB": 50
+    },
+    "TrainingJobName": job_name,
+    "HyperParameters": {
+        "image_shape": image_shape,
+        "num_layers": str(num_layers),
+        "num_training_samples": str(num_training_samples),
+        "num_classes": str(num_classes),
+        "mini_batch_size": str(mini_batch_size),
+        "epochs": str(epochs),
+        "learning_rate": str(learning_rate)
+    },
+    "StoppingCondition": {
+        "MaxRuntimeInSeconds": 360000
+    },
+    "InputDataConfig": [
+        {
+            "ChannelName": "train",
+            "DataSource": {
+                "S3DataSource": {
+                    "S3DataType": "S3Prefix",
+                    "S3Uri": s3_train,
+                    "S3DataDistributionType": "FullyReplicated"
+                }
+            },
+            "ContentType": "application/x-recordio",
+            "CompressionType": "None"
+        },
+        {
+            "ChannelName": "validation",
+            "DataSource": {
+                "S3DataSource": {
+                    "S3DataType": "S3Prefix",
+                    "S3Uri": s3_validation,
+                     "S3DataDistributionType": "FullyReplicated"
+                }
+            },
+            "ContentType": "application/x-recordio",
+            "CompressionType": "None"
+        }
+    ]
+}
 
 ```
