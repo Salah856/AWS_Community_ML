@@ -106,3 +106,17 @@ learning_rate = "0.01"
 
 ```
 
+The number of layers define the depth of the network. The image shape is 224×224 with three channels (RGB). The total number of images in the training dataset is 15,420. We have a total of 257 classes, 256 objects, and one extra class for others. We define the batch size of 64, which tells that in one go how many images will enter the network. We define the epochs as 2, which means the model will be trained on the whole training dataset two times. Finally, the learning rate is chosen as 0.1, which will decide the number of steps taken to converge and reach the local minima.
+
+We can now define the algorithm. We have already initialized the container.
+
+```py
+
+s3 = boto3.client('s3')
+
+job_name_prefix = 'imageclassification'
+
+job_name = job_name_prefix + '-' + time.strftime('-%Y-%m-%d-%H-%M-%S', time.gmtime())
+
+
+```
