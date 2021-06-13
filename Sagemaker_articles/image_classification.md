@@ -74,3 +74,18 @@ def upload_to_s3(channel, file):
 
 ```
 
+We will now define the folders inside the bucket where we will save the data.
+
+```py
+s3_train_key = "image-classification/train"
+s3_validation_key = "image-classification/validation"
+```
+
+
+All that is left is to store the image files in S3.
+
+```py
+upload_to_s3(s3_train_key, 'caltech-256-60-train.rec')
+upload_to_s3(s3_validation_key, 'caltech-256-60-val.rec')
+```
+
