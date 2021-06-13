@@ -9,7 +9,7 @@ Part 2: https://dev.to/aws-builders/data-processing-in-aws-sagemaker-20gi
 
 Part 3: https://dev.to/aws-builders/building-deploying-a-machine-learning-model-using-linear-learner-3p7c
 
-<!-- Part 4 -->
+Part 4: https://dev.to/aws-builders/building-deploying-blazing-text-model-in-aws-sagemaker-1lca
 
 <!-- Part 5  -->
 
