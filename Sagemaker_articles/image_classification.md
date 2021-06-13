@@ -174,3 +174,16 @@ training_params = {
 }
 
 ```
+
+
+The following are some of the unique parameters in this algorithm:
+
+1. ContentType is application/x-recordio. As I already mentioned, image classification expects only the RecordIO-Protobuf data format.
+
+2. S3DataDistributionType is fully replicated, which means if we use multiple instances for parallel training, then the dataset will be replicated in all the instances.
+
+3. The instance type we are using is p2.xlarge as image classification expects an instance having a graphics card. Be aware that the p2 and p3 instances are not at all free, and they are chargeable. 
+
+
+Once we are done with algorithm specifications, we will start the training process.
+
