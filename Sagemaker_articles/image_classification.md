@@ -29,8 +29,25 @@ the gradients turn to zero, and hence the learning stops. This phenomenon is cal
 ![1](https://user-images.githubusercontent.com/23625821/121798599-8ad5f280-cc27-11eb-9e65-c94a8aab6eb7.png)
 
 
-ResNet’s major key is that it allows the flow of gradients in the backward direction. Also, the inputs are bypassed every two convolutions. These two workarounds in CNNs solve the problem of vanishing gradients. To learn more about ResNet, please visit https://arxiv.org/pdf/1512.03385.pdf.
+ResNet’s major key is that it allows the flow of gradients in the backward direction. Also, the inputs are bypassed every two convolutions. These two workarounds in CNNs solve the problem of vanishing gradients.
+
+To learn more about ResNet, please visit https://arxiv.org/pdf/1512.03385.pdf.
 
 
 ## SageMaker Application of Image Classification
+
+For this algorithm, we will be using a dataset called Caltech256. It contains about 30,000 images of 256 object categories. These categories include ak47,
+grasshopper, bathtub, etc.
+
+We can explore more about this dataset or download the dataset from http://www.vision.caltech.edu/Image_Datasets/Caltech256/.
+
+So, in this section, our task is to create a machine learning algorithm that classifies the image into these 256 categories. We will start by defining our roles, regions, etc., that we have already seen in the previous sections. Next, let’s initialize the Docker container of the image classification algorithm.
+
+
+```py
+
+training_image = get_image_uri(boto3.Session().region_name, 'image-classification')
+
+
+```
 
