@@ -89,3 +89,20 @@ upload_to_s3(s3_train_key, 'caltech-256-60-train.rec')
 upload_to_s3(s3_validation_key, 'caltech-256-60-val.rec')
 ```
 
+
+Let’s define the parameters related to the algorithm, which we will use to train the model.
+
+```py
+
+num_layers = "18"
+image_shape = "3,224,224"
+num_training_samples = "15420"
+
+num_classes = "257"
+mini_batch_size =  "64"
+
+epochs = "2"
+learning_rate = "0.01"
+
+```
+
