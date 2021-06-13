@@ -21,3 +21,10 @@ A typical CNN consists of the following operations:
 
 3. The previous two processes are repeated multiple times, and then the final pooling operation’s output is given to a fully connected neural network layer. Here the major learning happens, and finally the classification task is done.
 
+
+A problem with the previous architecture is when the network is made too deep; that’s when the backpropagation process suffers. Inside the backpropagation process
+the gradients turn to zero, and hence the learning stops. This phenomenon is called vanishing gradients. Therefore, to solve this issue during a deep CNN training, ResNets come into picture.
+
+
+![1](https://user-images.githubusercontent.com/23625821/121798599-8ad5f280-cc27-11eb-9e65-c94a8aab6eb7.png)
+
