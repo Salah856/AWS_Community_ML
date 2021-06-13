@@ -217,3 +217,32 @@ endpoint_response= sagemaker.create_endpoint(
     
 ```    
  
+
+This will take some time and spin up the resource required for the endpoint generation. Once the endpoint is generated, we can start the predictions.
+
+Let’s download an image and use it for testing our model. We can download a bathtub image and check whether the model predicts it perfectly.
+
+```sh
+
+! wget -O /tmp/test.jpg http://www.vision.caltech.edu/Image_Datasets/Caltech256/images/008.bathtub/008_0007.jpg
+
+```
+The previous line will directly download the image to your system. If your system is not Linux, then you can directly go to the link and download the image. Next, we need to read the image and then pass it to the endpoint.
+
+
+```py
+
+with open('/tmp/test.jpg', 'rb') as f:
+    payload = f.read()
+    payload = bytearray(payload)
+    
+    
+response = runtime.invoke_endpoint(EndpointName=endpoint_name,
+                   ContentType='application/x-image',
+                   Body=payload)
+                   
+                   
+result = response['Body'].read()
+result = json.loads(result)
+
+```
