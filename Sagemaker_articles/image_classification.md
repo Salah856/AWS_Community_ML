@@ -246,3 +246,24 @@ result = response['Body'].read()
 result = json.loads(result)
 
 ```
+
+The variable result consists of probabilities of prediction for all the classes. We need to find the class that has the maximum probability. That means if we can get the argument that has the maximum probability, that will be our predicted class. For this we can use the np.argmax() function.
+
+```py
+index = np.argmax(result)
+```
+
+Now, we can use this index to extract the label. We can create a list of all the labels in the same sequence as they are present in the dataset, and then we can pass the index to predict the label. Suppose we save all the classes in the variable object_classes. Next we can print the prediction.
+
+```py
+print("Result: label - " + object_categories[index] + ", probability - " + str(result[index]))
+```
+
+
+Don’t forget to delete the endpoint once all the operations are done.
+
+```py
+sage.delete_endpoint(EndpointName=endpoint_name)
+```
+
+
