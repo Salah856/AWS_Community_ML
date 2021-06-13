@@ -46,3 +46,12 @@ sess.upload_data(path='text8', bucket=bucket, key_prefix=train_channel)
 s3_train_data = 's3://{}/{}'.format(bucket, train_channel)
 
 ```
+
+Now that we have stored the data and defined the path, the next step will be to initialize the blazing text Docker container.
+
+```py
+
+container = sagemaker.amazon.amazon_estimator.get_image_uri(region_name, "blazingtext", "latest")
+
+```
+
