@@ -125,3 +125,9 @@ print(vecs)
 
 ```
 
+Here we will get the output, which will be the word vectors generated for the words awesome and blazing. Finally, we will delete the model endpoint.
+
+```py
+sess.delete_endpoint(bt_endpoint.endpoint)
+```
+
