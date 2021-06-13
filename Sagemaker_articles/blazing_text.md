@@ -96,4 +96,32 @@ bt_model.set_hyperparameters(mode="batch_skipgram",
 
 ```
 
+Now we will pass the data as a JSON file to train the algorithm. Before doing that, we must tell the algorithm that the data is coming from S3.
+
+ ```py
+ 
+train_data = sagemaker.session.s3_input(s3_train_data, content_type='text/plain', s3_data_type='S3Prefix')
+
+data_channels = {'train': train_data}
+
+bt_model.fit(inputs=data_channels, logs=True)
+ 
+ ```
+The logs parameter will not only train the model but will also show the model output in the same Jupyter Notebook. Otherwise, we would have to look at the output in the CloudWatch. The next steps will be the same as before. Deploy the model and test it.
+
+
+```py
+
+bt_endpoint = bt_model.deploy(initial_instance_count = 1,instance_type ='ml.m4.xlarge')
+
+words = ["awesome", "blazing"]
+payload = {"instances" : words}
+
+response = bt_endpoint.predict(json.dumps(payload))
+vecs = json.loads(response)
+
+print(vecs)
+
+
+```
 
