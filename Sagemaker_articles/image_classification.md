@@ -211,7 +211,9 @@ s shown, this code will start the training and then inform us whether the traini
 
 ```py
 
-endpoint_response= sagemaker.create_endpoint(EndpointName="image-classification-caltech-endpoint", EndpointConfigName="image-classification-caltech-config")
+endpoint_response= sagemaker.create_endpoint(
+                        EndpointName="image-classification-caltech-endpoint", 
+                        EndpointConfigName="image-classification-caltech-config")
     
 ```    
  
