@@ -213,3 +213,11 @@ sagemaker_client.create_training_job(**create_training_params)
 ```
 
 
+This code will start the execution of the training and will take a lot of hours to finish. Remember, this algorithm requires a GPU instance for execution. So, whatever instance you select will be chargeable. Choose wisely.
+
+Now, let’s look at how we can use the pretrained model that already exists and do the inference on the test dataset by exposing the endpoint. When we train the previous model, we will get three files:
+
+- Model.tar.gz
+- Vocab.src.json
+- Vocab.trg.json
+
