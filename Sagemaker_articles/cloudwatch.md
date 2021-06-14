@@ -15,3 +15,7 @@ When it comes to machine learning, especially with SageMaker, CloudWatch Logs gi
 
 To look at this output, we must make some adjustments to our code, and then the status can be seen directly in the Jupyter Notebook in use, or we can use CloudWatch Logs to get this output in a step-by-step manner. The output can include your model outputs, the reason why your model failed, insights into the step-by-step execution, etc. Containers are required for three jobs, and hence we have three log groups in machine learning.
 
+1. Processing Jobs log group
+2. Training Jobs log group
+3. Transform Jobs log group
+
