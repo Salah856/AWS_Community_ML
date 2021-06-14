@@ -221,3 +221,92 @@ Now, let’s look at how we can use the pretrained model that already exists and
 - Vocab.src.json
 - Vocab.trg.json
 
+
+
+So, once you train the model, you can use these files directly. But, for using the pretrained model, we will download these files. We can download them from here:
+
+```py
+model_name = "DEMO-pretrained-en-de-model"
+```
+
+```sh
+! curl https://s3-us-west-2.amazonaws.com/seq2seq-data/model.tar.gz > model.tar.gz
+! curl https://s3-us-west-2.amazonaws.com/seq2seq-data/vocab.src.json > vocab.src.json
+! curl https://s3-us-west-2.amazonaws.com/seq2seq-data/vocab.trg.json > vocab.trg.json
+```
+
+We will have to upload the model files to S3 so that our endpoint can use it.
+
+```py
+
+upload_to_s3(bucket, prefix, 'pretrained_model', 'model.tar.gz')
+model_data = "s3://{}/{}/pretrained_model/model.tar.gz".format(bucket, prefix)
+
+```
+
+model_data stores the address of the model file uploaded. Next, we will have to update this model in the algorithm so that we can use it for prediction. For this we will use the create_model() function.
+
+
+```py
+
+sage = boto3.client('sagemaker')
+primary_container = {
+    'Image': container,
+    'ModelDataUrl': model_data
+}
+create_model_response = sage.create_model(
+    ModelName = model_name,
+    ExecutionRoleArn = role,
+    PrimaryContainer = primary_container)
+
+```
+
+
+The next step will be to define the resources that will be used by the endpoint.
+
+```py
+from time import gmtime, strftime
+
+endpoint_config_name = 'DEMO-Seq2SeqEndpointConfig-' + strftime("%Y-%m-%d-%H-%M-%S", gmtime())
+print(endpoint_config_name)
+
+create_endpoint_config_response = sage.create_endpoint_config(
+    EndpointConfigName = endpoint_config_name,
+    ProductionVariants=[{
+        'InstanceType':'ml.m4.xlarge',
+        'InitialInstanceCount':1,
+        'ModelName':model_name,
+        'VariantName':'AllTraffic'}])
+
+endpoint_name = 'DEMO-Seq2SeqEndpoint-' + strftime("%Y-%m-%d-%H-%M-%S", gmtime())
+create_endpoint_response = sage.create_endpoint(
+    EndpointName=endpoint_name,
+    EndpointConfigName=endpoint_config_name)
+
+runtime = boto3.client(service_name='runtime.sagemaker')
+
+sentences = ["you are so good !", "can you drive a car ?","i want to watch a movie ."]
+
+
+payload = {"instances" : []}
+for sent in sentences:
+    payload["instances"].append({"data" : sent})
+response = runtime.invoke_endpoint(EndpointName=endpoint_name,
+                                   ContentType='application/json',
+                                   Body=json.dumps(payload))
+response = response["Body"].read().decode("utf-8")
+response = json.loads(response)
+
+print(response)
+
+
+```
+
+You will get the output as given next:
+
+![1](https://user-images.githubusercontent.com/23625821/121839269-f5476b00-ccd9-11eb-915b-bd0da4007a6d.png)
+
+
+As you can see, the predictions have been successfully made.
+
+
