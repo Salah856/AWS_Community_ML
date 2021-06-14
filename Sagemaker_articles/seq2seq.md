@@ -37,8 +37,10 @@ Let’s understand the algorithm in more detail by applying it to the machine tr
 
 
 ```py
-
+from sagemaker import get_execution_role
+from sagemaker.amazon.amazon_estimator import get_image_uri
 from time import gmtime, strftime
+
 import time
 import numpy as np
 import os
@@ -46,7 +48,6 @@ import os
 import json
 import boto3
 import re
-from sagemaker import get_execution_role
 
 
 region_name = boto3.Session().region_name
@@ -54,6 +55,8 @@ bucket = 'slytherins-test'
 
 prefix = 'seq2seq-E2G'
 role = get_execution_role()
+
+container = get_image_uri(region_name, 'seq2seq')
 
 
 ```
