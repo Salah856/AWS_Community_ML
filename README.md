@@ -11,7 +11,7 @@ Part 3: https://dev.to/aws-builders/building-deploying-a-machine-learning-model-
 
 Part 4: https://dev.to/aws-builders/building-deploying-blazing-text-model-in-aws-sagemaker-1lca
 
-<!-- Part 5  -->
+Part 5: https://dev.to/aws-builders/building-deploying-image-classification-in-aws-sagemaker-4l4e
 
 <!-- Part 6  -->
 
