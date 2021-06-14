@@ -11,3 +11,7 @@ Amazon CloudWatch is a service provided by Amazon that tracks the resource activ
 
 Through these logs and metrics, a user can explore the performance of an AWS resource being used and what can be done to improve it.
 
+When it comes to machine learning, especially with SageMaker, CloudWatch Logs gives us the output of containers in which the code is running. As we have already seen in the previous parts, machine learning algorithms run inside a Docker container attached to an EC2 instance. So, the output that originates from these containers is not directly visible.
+
+To look at this output, we must make some adjustments to our code, and then the status can be seen directly in the Jupyter Notebook in use, or we can use CloudWatch Logs to get this output in a step-by-step manner. The output can include your model outputs, the reason why your model failed, insights into the step-by-step execution, etc. Containers are required for three jobs, and hence we have three log groups in machine learning.
+
