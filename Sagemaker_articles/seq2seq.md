@@ -30,3 +30,8 @@ RNNs or LSTMS and GRUs. Once the encoders look at all the word vectors, they gen
 The decoder takes these encoder vectors, feeds them to RNNs of its own, and then applies a softmax activation function to give the output. The best advantage of this architecture, apart from understanding the context, is its ability to take variable-length input and give variable-length output.
 
 
+
+## SageMaker Application of SeqToSeq
+
+Let’s understand the algorithm in more detail by applying it to the machine translation use case; that is, let’s translate something from English to German.
+
