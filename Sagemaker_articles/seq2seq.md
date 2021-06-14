@@ -302,11 +302,5 @@ print(response)
 
 ```
 
-You will get the output as given next:
-
-![1](https://user-images.githubusercontent.com/23625821/121839269-f5476b00-ccd9-11eb-915b-bd0da4007a6d.png)
-
-
-As you can see, the predictions have been successfully made.
 
 
