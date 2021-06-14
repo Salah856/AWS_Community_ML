@@ -19,3 +19,7 @@ To look at this output, we must make some adjustments to our code, and then the 
 2. Training Jobs log group
 3. Transform Jobs log group
 
+CloudWatch Metrics provides us with information in the form of values to variables. For example, when it comes to machine learning, CloudWatch Metrics can provide
+values such as the accuracy of a model, precision, error, etc. It can also provide metrics related to resources, such as GPU utilization, memory utilization etc.
+
+
