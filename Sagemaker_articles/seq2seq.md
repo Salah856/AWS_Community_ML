@@ -82,3 +82,13 @@ Let’s download the data from inside the notebook and create our training and v
 ! curl http://data.statmt.org/wmt17/translation-task/preprocessed/de-en/dev.tgz | tar xvzf - -C validation
 
 ```
+
+The previous files that we have downloaded are big, around 250 MB each. So, if we train the model on the entire dataset, it may take days to finish. Therefore, we can take a subset of the entire data and use it for training.
+
+```sh
+
+! head -n 10000 corpus.tc.en > corpus.tc.en.small
+! head -n 10000 corpus.tc.de > corpus.tc.de.small
+
+```
+
