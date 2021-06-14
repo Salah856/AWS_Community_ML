@@ -65,3 +65,20 @@ container = get_image_uri(region_name, 'seq2seq')
 So, in the previous steps we have defined the container of the algorithm and defined our bucket and the folder inside where the entire model-related files will be saved. The next step will be to have a dataset. The Seq2Seq algorithm has two approaches. In the first, you can use the pretrained model available for the predictions. So, for our example, a model already exists that is trained on English to German machine translation. Or, we can train the model on our own corpus and then use it for the predictions. This process may take a lot of time, but it is the best when used for domain-specific translation tasks.
 
 
+We will first see how to train the model on a corpus, and then we will use the pretrained model for predictions. The data that we will be using is news data. We will have files that contain news commentary in English and its translation in German. We can get these files from http://data.statmt.org/wmt17/translation-task/.
+
+
+Let’s download the data from inside the notebook and create our training and validation sets.
+
+```sh 
+
+! wget http://data.statmt.org/wmt17/translation-task/preprocessed/de-en/corpus.tc.de.gz
+! wget http://data.statmt.org/wmt17/translation-task/preprocessed/de-en/corpus.tc.en.gz
+
+! gunzip corpus.tc.de.gz
+! gunzip corpus.tc.en.gz
+
+! mkdir validation
+! curl http://data.statmt.org/wmt17/translation-task/preprocessed/de-en/dev.tgz | tar xvzf - -C validation
+
+```
