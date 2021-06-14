@@ -162,8 +162,7 @@ create_training_params = {
         "max_seq_len_source": "60",
         "max_seq_len_target": "60",
         "optimized_metric": "bleu",
-        "batch_size": "64", # Please use a larger batch size (256 or 512)
-if using ml.p2.8xlarge or ml.p2.16xlarge
+        "batch_size": "64",  # Please use a larger batch size (256 or 512) if using ml.p2.8xlarge or ml.p2.16xlarge
         "checkpoint_frequency_num_batches": "1000",
         "rnn_num_hidden": "512",
         "num_layers_encoder": "1",
