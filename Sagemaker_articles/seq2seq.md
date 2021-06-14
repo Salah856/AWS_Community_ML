@@ -92,3 +92,18 @@ The previous files that we have downloaded are big, around 250 MB each. So, if w
 
 ```
 
+The previous subset created has 10,000 rows. We will use this small dataset for training. The next step will be to generate English and German vocabulary from the
+previous files. This will use the tokenization and other NLP components to generate the vocabulary.
+
+
+```bash
+
+python3 create_vocab_proto.py \
+      --train-source corpus.tc.en.small \
+      --train-target corpus.tc.de.small \
+      --val-source validation/newstest2014.tc.en \
+      --val-target validation/newstest2014.tc.de
+      
+
+
+```
