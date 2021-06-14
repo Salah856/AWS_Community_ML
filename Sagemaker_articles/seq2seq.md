@@ -107,3 +107,25 @@ python3 create_vocab_proto.py \
 
 
 ```
+
+The previous Python script takes as input the source English text and target German text. It applies the preprocessing to generate the vocabulary. Finally, it saves the English and German vocabulary in the validation folder. 
+
+
+```py
+
+def upload_to_s3(bucket, prefix, channel, file):
+    s3 = boto3.resource('s3')
+    data = open(file, "rb")
+    key = prefix + "/" + channel + '/' + file
+    s3.Bucket(bucket).put_object(Key=key, Body=data)
+    
+
+upload_to_s3(bucket, prefix, 'train', 'train.rec') 
+upload_to_s3(bucket, prefix, 'validation', 'val.rec') 
+
+upload_to_s3(bucket, prefix, 'vocab', 'vocab.src.json') 
+upload_to_s3(bucket, prefix, 'vocab', 'vocab.trg.json') 
+
+
+```
+
