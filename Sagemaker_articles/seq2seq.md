@@ -129,3 +129,88 @@ upload_to_s3(bucket, prefix, 'vocab', 'vocab.trg.json')
 
 ```
 
+The code that we just executed generates two files. One is the vocabulary that is generated, and the second is the RecordIO-Protobuf version of the data. We will upload both of these files to S3 using the previous code.
+
+All the basic steps are complete now, and we want to now initialize the algorithm. We will do that using the code shown here:
+
+
+```py
+
+job_name = 'seq2seq-E2G'
+print("Training job", job_name)
+
+create_training_params = {
+    "AlgorithmSpecification": {
+        "TrainingImage": container,
+        "TrainingInputMode": "File"
+    },
+    "RoleArn": role,
+    "OutputDataConfig": {
+        "S3OutputPath": "s3://{}/{}/".format(bucket, prefix)
+    },
+    "ResourceConfig": {
+          # Seq2Seq does not support multiple machines. Currently, it only supports single machine, multiple GPUs
+          "InstanceCount": 1,
+          
+          "InstanceType": "ml.m4.xlarge",
+          # We suggest one of ["ml.p2.16xlarge", "ml.p2.8xlarge", "ml.p2.xlarge"]
+          "VolumeSizeInGB": 5
+    },
+    "TrainingJobName": job_name,
+    "HyperParameters": {
+        # Please refer to the documentation for complete list of parameters
+        "max_seq_len_source": "60",
+        "max_seq_len_target": "60",
+        "optimized_metric": "bleu",
+        "batch_size": "64", # Please use a larger batch size (256 or 512)
+if using ml.p2.8xlarge or ml.p2.16xlarge
+        "checkpoint_frequency_num_batches": "1000",
+        "rnn_num_hidden": "512",
+        "num_layers_encoder": "1",
+        "num_layers_decoder": "1",
+        "num_embed_source": "512",
+        "num_embed_target": "512"
+    },
+    "StoppingCondition": {
+        "MaxRuntimeInSeconds": 48 * 3600
+    },
+    "InputDataConfig": [
+        {
+            "ChannelName": "train",
+            "DataSource": {
+                "S3DataSource": {
+                    "S3DataType": "S3Prefix",
+                    "S3Uri": "s3://{}/{}/train/".format(bucket, prefix),
+                    "S3DataDistributionType": "FullyReplicated"
+                }
+            },
+        },
+        {
+            "ChannelName": "vocab",
+            "DataSource": {
+                "S3DataSource": {"S3DataType": "S3Prefix",
+                    "S3Uri": "s3://{}/{}/vocab/".format(bucket, prefix),
+                    "S3DataDistributionType": "FullyReplicated"
+                }
+            },
+        },
+        {
+            "ChannelName": "validation",
+            "DataSource": {
+                "S3DataSource": {
+                    "S3DataType": "S3Prefix",
+                    "S3Uri": "s3://{}/{}/validation/".format(bucket, prefix),
+                    "S3DataDistributionType": "FullyReplicated"
+                }
+            },
+        }
+    ]
+}
+
+
+sagemaker_client = boto3.Session().client(service_name='sagemaker')
+sagemaker_client.create_training_job(**create_training_params)
+
+```
+
+
