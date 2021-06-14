@@ -13,7 +13,7 @@ Part 4: https://dev.to/aws-builders/building-deploying-blazing-text-model-in-aws
 
 Part 5: https://dev.to/aws-builders/building-deploying-image-classification-in-aws-sagemaker-4l4e
 
-<!-- Part 6  -->
+Part 6: https://dev.to/salah856/building-seqtoseq-model-in-aws-sagemaker-4m22
 
 <!-- Part 7  -->
 
