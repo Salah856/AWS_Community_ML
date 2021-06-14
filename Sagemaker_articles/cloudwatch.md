@@ -39,5 +39,29 @@ In the SageMaker console, on the left side, we have a sidebar that guides us thr
 ![1](https://user-images.githubusercontent.com/23625821/121852944-80cbf680-ccf0-11eb-82c3-6559583c1956.png)
 
 
+![1](https://user-images.githubusercontent.com/23625821/121853038-a78a2d00-ccf0-11eb-80e3-e241a28c853e.png)
+
+
+Click the “View logs” link, and you will see the CloudWatch page open.
+
+![1](https://user-images.githubusercontent.com/23625821/121853123-ca1c4600-ccf0-11eb-8e86-949004978d97.png)
+
+
+We are looking at the log groups. As you know, because we have selected the training job, this information is present at the top of the console.
+
+When we scroll down, at the bottom we can see the name of the algorithm. We must click it to get to the logs
+
+
+![1](https://user-images.githubusercontent.com/23625821/121853256-ffc12f00-ccf0-11eb-9e88-6ab9ee24819e.png)
+
+
+Remember, the logs will start appearing only once the container has successfully started and the algorithms have started running.
+
+If there is a problem with your Docker script, then you will not find any logs generated. But, if your code related to the algorithm has an error, then you will find the information in the logs section, as the container had successfully started, and hence the logs have started generating.
+
+So, if your model is not running, you can come to the logs to check the error in the code. With custom containers, if the logs don’t start running, in general the error is probably in the Docker script. 
+
+
+
 
 
