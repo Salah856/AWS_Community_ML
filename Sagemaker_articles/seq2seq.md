@@ -18,3 +18,15 @@ passed to the next RNN layer. Storage happens in h, words are sent through x, wh
 
 There are various modifications to RNNs that solve the shortcomings present in the original versions. Two of the most used are long short-term memory (LSTM) and gated recurrent units (GRU).
 
+
+## Encoder-Decoder Architecture
+
+![1](https://user-images.githubusercontent.com/23625821/121837386-bc0cfc00-ccd5-11eb-9668-13619e937266.png)
+
+An encoder is mostly used to not only memorize the past and give accurate predictions but also to understand the context of the text passed. We can use normal
+RNNs or LSTMS and GRUs. Once the encoders look at all the word vectors, they generate the encoder vectors and pass them to the decoder. The encoder vector suffices all the information that the encoder has received, and the decoder uses it to make efficient predictions.
+
+
+The decoder takes these encoder vectors, feeds them to RNNs of its own, and then applies a softmax activation function to give the output. The best advantage of this architecture, apart from understanding the context, is its ability to take variable-length input and give variable-length output.
+
+
