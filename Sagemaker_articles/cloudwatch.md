@@ -33,3 +33,11 @@ By looking at this architecture, we can see that in addition to accessing the se
 In the SageMaker console, on the left side, we have a sidebar that guides us through the different operations that are possible in it. We can create notebook instances, look at different algorithms that we ran, and analyze the endpoints. We can look at the logs of all the services that we have used by viewing the log details.
 
 
+![1](https://user-images.githubusercontent.com/23625821/121852903-71e54400-ccf0-11eb-880c-0de250b3e74b.png)
+
+
+![1](https://user-images.githubusercontent.com/23625821/121852944-80cbf680-ccf0-11eb-82c3-6559583c1956.png)
+
+
+
+
