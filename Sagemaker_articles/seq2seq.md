@@ -35,3 +35,25 @@ The decoder takes these encoder vectors, feeds them to RNNs of its own, and then
 
 Let’s understand the algorithm in more detail by applying it to the machine translation use case; that is, let’s translate something from English to German.
 
+
+```py
+
+from time import gmtime, strftime
+import time
+import numpy as np
+import os
+
+import json
+import boto3
+import re
+from sagemaker import get_execution_role
+
+
+region_name = boto3.Session().region_name
+bucket = 'slytherins-test'
+
+prefix = 'seq2seq-E2G'
+role = get_execution_role()
+
+
+```
