@@ -195,3 +195,6 @@ if __name__ == '__main__':
 ```
 
 We have to use sys.exit(0) as it sends the message to SageMaker that the training has successfully completed. Save the file with the name train and no extension.
+
+### Creating the Inference Script
+
