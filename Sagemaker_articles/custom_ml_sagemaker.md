@@ -198,3 +198,4 @@ We have to use sys.exit(0) as it sends the message to SageMaker that the trainin
 
 ### Creating the Inference Script
 
+The training script is used to train the model. But, once the model is trained, we need to make predictions, whether with real-time inference. We will save the inference script in a file named predictor.py.
