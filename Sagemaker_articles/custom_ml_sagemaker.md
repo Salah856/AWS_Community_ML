@@ -51,3 +51,37 @@ from sklearn.metrics import mean_squared_error
 np.sqrt(mean_squared_error(predictions, y_test))
 ```
 
+## Transforming Code to Use SageMaker Resources
+
+The following are the steps to run a custom model in SageMaker:
+
+1. Store the data in S3.
+2. Create a training script and name it train.
+3. Create an inference script that will help in predictions. We will call it predictor.py.
+
+4. Set up files so that it will help in endpoint generation.
+5. Create a Dockerfile that will help in building an image inside which the entire code will run.
+
+6. Build a script to push the Docker image to Amazon Elastic Container Registry (ECR).
+7. Use the SageMaker and Boto3 APIs to train and test the model.
+
+
+### Creating the Training Script
+
+The first thing that should be kept in mind is that the script is going to run inside a container. So, there can be a synchronization issue as the script is inside while the data is coming from S3 bucket, which is outside the container. Also, the results of the algorithm should also be saved in the S3 bucket. We need to keep all this in mind as we create a training script.
+
+The first thing that we should know is that inside the container, no matter what the data is that is coming in, it gets stored inside the folder /opt/ml. Therefore, data from S3 will be downloaded from that folder. So, in this folder we have to create three folders:
+
+one to store the input, one to store the output, and one to store the models. This can be defined by using the following script:
+
+```py
+
+prefix = '/opt/ml/'
+input_path = prefix + 'input/data'
+
+output_path = os.path.join(prefix, 'output')
+model_path = os.path.join(prefix, 'model')
+
+```
+
+
