@@ -104,3 +104,80 @@ raw_data = [ pd.read_csv(file) for file in input_files ]
 data = pd.concat(raw_data)
 
 ```
+
+This script also helps if you have multiple CSV sheets to read. But, in that case remember to keep the parameter header=None. Now that we have read the data, we can start the training process. The following is the entire script for the training:
+
+
+```py 
+
+def train():
+    print('Starting the training.')
+    try:
+        # Take the set of files and read them all into a single pandas dataframe
+        input_files = [ os.path.join(training_path, file) for file in os.listdir(training_path) ]
+        
+        if len(input_files) == 0:
+            raise ValueError(('There are no files in {}.\n' +
+                 'This usually indicates that the channel ({}) wasincorrectly specified,\n' +
+                 'the data specification in S3 was incorrectly specified orthe role specified\n' +
+                 'does not have permission to access the data.').format(training_path, channel_name))
+                 
+        raw_data = [ pd.read_csv(file) for file in input_files ]
+        data = pd.concat(raw_data)
+        data = data.sample(frac=1)
+        
+        for i in data.Item_Type.value_counts().index:
+           data.loc[(data['Item_Weight'].isna()) & (data['Item_Type'] == i), ['Item_Weight']] = \
+           data.loc[data['Item_Type'] == 'Fruits and Vegetables', ['Item_Weight']].mean()[0]
+        
+        cat_data = data.select_dtypes(object)
+        num_data = data.select_dtypes(np.number)
+        cat_data.loc[(cat_data['Outlet_Size'].isna()) & (cat_data['Outlet_Type'] == 'Grocery Store'), ['Outlet_Size']] = 'Small'
+        
+        cat_data.loc[(cat_data['Outlet_Size'].isna()) & (cat_data['Outlet_Type'] == 'Supermarket Type1'), ['Outlet_Size']] = 'Small'
+        cat_data.loc[(cat_data['Outlet_Size'].isna()) & (cat_data['Outlet_Type'] == 'Supermarket Type2'), ['Outlet_Size']] = 'Medium'
+        cat_data.loc[(cat_data['Outlet_Size'].isna()) & (cat_data['Outlet_Type'] == 'Supermarket Type3'), ['Outlet_Size']] = 'Medium'
+        
+        cat_data.loc[cat_data['Item_Fat_Content'] == 'LF' , ['Item_Fat_Content']] = 'Low Fat'
+        cat_data.loc[cat_data['Item_Fat_Content'] == 'reg' , ['Item_Fat_Content']] = 'Regular'
+        cat_data.loc[cat_data['Item_Fat_Content'] == 'low fat' , ['Item_Fat_Content']] = 'Low Fat'
+        
+        le = LabelEncoder()
+        cat_data = cat_data.apply(le.fit_transform)
+        
+        ss = StandardScaler()
+        num_data = pd.DataFrame(ss.fit_transform(num_data.drop(['Item_Outlet_Sales'], axis=1)), columns = ­num_data.drop(['Item_Outlet_Sales'],axis=1).columns)
+
+        cat_data = pd.DataFrame(ss.fit_transform(cat_data.drop(['Item_Identifier'], axis=1)), columns = cat_data.drop(['Item_Identifier'], axis=1).columns)
+        
+        final_data = pd.concat([num_data,cat_data],axis=1)
+        
+        X = final_data
+        y = data['Item_Outlet_Sales']
+        from sklearn.model_selection import train_test_split
+        
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.1, random_state=5)
+        
+        from sklearn.ensemble import RandomForestRegressor
+        
+        rfc = RandomForestRegressor(n_estimators=500)
+        clf = rfc.fit(X_train, y_train)
+        
+        # save the model
+        with open(os.path.join(model_path, 'randomForest-tree-model.pkl'), 'w') as out:
+            pickle.dump(clf, out)
+        print('Training complete.')
+    
+    except Exception as e:
+    
+        trc = traceback.format_exc()
+        
+        with open(os.path.join(output_path, 'failure'), 'w') as s:
+            s.write('Exception during training: ' + str(e) + '\n' + trc)
+        
+        print('Exception during training: ' + str(e) + '\n' + trc, file=sys.stderr)
+        
+        sys.exit(255)
+        
+
+```
