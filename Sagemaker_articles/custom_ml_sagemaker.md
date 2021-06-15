@@ -16,3 +16,13 @@ We have already explored the dataset in second part: Data Processing in AWS Sage
 
 ![1](https://user-images.githubusercontent.com/23625821/122001307-6ce7c980-cdb0-11eb-9170-cee5b744fa69.png)
 
+## Running the Model
+
+Before moving to the application of the model inside the SageMaker environment, let’s first run the algorithm, locally, on the dataset that we have prepared and check the total loss that was incurred.
+
+```py
+from sklearn.ensemble import RandomForestRegressor
+
+rfc = RandomForestRegressor(n_estimators=500)
+
+```
