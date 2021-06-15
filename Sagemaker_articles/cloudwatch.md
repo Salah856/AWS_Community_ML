@@ -25,6 +25,7 @@ values such as the accuracy of a model, precision, error, etc. It can also provi
 ![1](https://user-images.githubusercontent.com/23625821/121852639-11560700-ccf0-11eb-8d2d-0306a20a0fe0.png)
 
 
+
 By looking at this architecture, we can see that in addition to accessing the services through the Amazon Management Console, we can integrate alarms through Amazon SNS, which can be connected to your email. We can also set custom rules based on certain criteria. This includes starting, stopping, and terminating a process or using features such as autoscaling.
 
 
