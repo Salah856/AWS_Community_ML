@@ -26,3 +26,28 @@ from sklearn.ensemble import RandomForestRegressor
 rfc = RandomForestRegressor(n_estimators=500)
 
 ```
+
+In the previous code, we initialized the RandomForestRegressor algorithm and asked to merge the outputs of 500 individual decision trees. Once we have initialized the algorithm, we can start training the model.
+
+```py
+
+rfc.fit(X_train, y_train)
+
+```
+
+The previous code will start the training of the model. Now we can use the trained
+model to make predictions on the test set.
+
+```py
+predictions = rfc.predict(X_test)
+```
+
+All the predictions are not stored in the variable predictions. Let’s calculate the roto
+mean squared error of the model that we have created.
+
+```py
+from sklearn.metrics import mean_squared_error
+
+np.sqrt(mean_squared_error(predictions, y_test))
+```
+
