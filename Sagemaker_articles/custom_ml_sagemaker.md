@@ -85,3 +85,22 @@ model_path = os.path.join(prefix, 'model')
 ```
 
 
+Inside the data folder, we can have multiple files such as training, validation, or testing. We can also have separate files contributing to a single training file. Hence, we can make this kind of segregation as well. For us, we have only one file: the training file. So, we will be using only one channel.
+
+```py
+channel_name='training'
+training_path = os.path.join(input_path, channel_name)
+
+```
+
+This prepares our training script to handle data. Next is the training script itself. The data will come from S3. First we have to read it. 
+
+```py
+
+input_files = [ os.path.join(training_path, file) for file in os.listdir(training_path) ]
+
+raw_data = [ pd.read_csv(file) for file in input_files ]
+
+data = pd.concat(raw_data)
+
+```
