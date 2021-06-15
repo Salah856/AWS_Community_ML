@@ -208,3 +208,5 @@ The predictor file consists of the following components:
 - transformation() method
 - Any other helper function required
 
+The ScoringService() class consists of two functions. The first function, get_model(), loads and deserializes the model, while the second method, predict(), is responsible for making the predictions.
+
