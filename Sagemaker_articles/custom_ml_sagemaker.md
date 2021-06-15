@@ -181,3 +181,17 @@ def train():
         
 
 ```
+
+We will keep the entire script inside a function called train(). After reading the CSV sheet, we will follow the same procedure we saw in Chapter 5. Later we will fit the random forest model on the data, which we ran in the previous section.
+
+After all this, we have to save this model because later we will have to make predictions using the model. To save the model, we will first serialize it using pickle and then save it in the model location. Later, this model will be saved in S3. Finally, we can run the entire script.
+
+
+```py
+
+if __name__ == '__main__':
+    train()
+    sys.exit(0)
+```
+
+We have to use sys.exit(0) as it sends the message to SageMaker that the training has successfully completed. Save the file with the name train and no extension.
