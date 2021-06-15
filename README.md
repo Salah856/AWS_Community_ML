@@ -15,7 +15,7 @@ Part 5: https://dev.to/aws-builders/building-deploying-image-classification-in-a
 
 Part 6: https://dev.to/salah856/building-seqtoseq-model-in-aws-sagemaker-4m22
 
-<!-- Part 7  -->
+Part 7: https://dev.to/aws-builders/using-cloudwatch-in-sagemaker-pm7
 
 <!-- Part 8  -->
 
