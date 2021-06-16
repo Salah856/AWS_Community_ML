@@ -444,3 +444,45 @@ This will start running the script and will successfully upload the image to ECR
 This finishes the process of creating the Docker. 
 
 
+## Training the Model
+
+```py
+
+import boto3
+import re
+import os
+
+import numpy as np
+import pandas as pd
+
+from sagemaker import get_execution_role
+import sagemaker as sage
+
+role = get_execution_role()
+sess = sage.Session()
+
+account = sess.boto_session.client('sts').get_caller_identity()['Account']
+region = sess.boto_session.region_name
+
+data_location = 's3://slytherins-test/Train.csv'
+
+image = '{}.dkr.ecr.{}.amazonaws.com/sagemaker-random-forest:latest'.format(account, region)
+
+tree = sage.estimator.Estimator(image,
+             role, 
+             1, 
+             'ml.m4.xlarge',
+             output_path="s3://{}/output".format(“slytherins-test”),
+             sagemaker_session=sess)
+
+tree.fit(data_location)
+
+
+```
+
+This will start the training job, and then once the job is finished, this will tell you the billable time as well.
+
+
+![1](https://user-images.githubusercontent.com/23625821/122174071-b3a5f400-ce82-11eb-861b-2dd4af49c251.png)
+
+
