@@ -17,7 +17,7 @@ Part 6: https://dev.to/salah856/building-seqtoseq-model-in-aws-sagemaker-4m22
 
 Part 7: https://dev.to/aws-builders/using-cloudwatch-in-sagemaker-pm7
 
-<!-- Part 8  -->
+Part 8:  https://dev.to/aws-builders/running-custom-algorithm-in-aws-sagemaker-4jdf
 
 <!-- Part 9  -->
 
