@@ -231,3 +231,15 @@ class ScoringService(object):
         
 
 ```
+
+The ping() method is just used to check whether the Docker container that the code is running in is healthy. If it’s not healthy, then it gives a 404 error, else 202.
+
+```py
+
+@app.route('/ping', methods=['GET'])
+def ping():
+    status = 200 if health else 404
+    return flask.Response(response='\n', status=status, mimetype='application/json')
+    
+
+```
