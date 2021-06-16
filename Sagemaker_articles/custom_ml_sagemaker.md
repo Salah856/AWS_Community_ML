@@ -290,3 +290,86 @@ To run the inference server successfully, we need to configure the following fil
 - serve file
 - wsgi.py file
 
+
+The Nginx file is used to spin up the server and make the connection between the Docker containers deployed on EC2 instances and the client outside or inside the
+SageMaker network possible. Nginx uses a Python framework called Gunicorn that helps to set up the HTTP server.
+
+
+Serve uses the running Gunicorn server to make the connection between the different resources feasible. Specifically, it is used for the following purposes:
+
+- Efficiently using the number of CPUs for running the model
+- Defining the server timeout
+- Generating logs
+
+- Starting the server using Nginx and Gunicorn
+- Stopping the server if something doesn’t go as expected
+
+
+Lastly, the wsgi.py file is used to tell the server about our predictor.py file.
+
+
+## Setting Up the Dockerfile
+
+Now that all our script files are ready, we have to create a Docker image so that it can be uploaded to ECR and then SageMaker can access the code present in it and run it in an EC2 instance attached.
+
+![1](https://user-images.githubusercontent.com/23625821/122170162-8b1bfb00-ce7e-11eb-90c6-d4f674247f7b.png)
+
+
+Now, we have to create a Dockerfile script, which will be run to build the image. Then we will use the build_and_push.sh file to push the image to ECR.
+
+These are the steps that we will follow in the Dockerfile:
+
+1. Download an image from DockerHub that will have our operating system. We will download a minimal version of Ubuntu so that our code can run inside it. For this, we will use the following script:
+ 
+```sh 
+FROM ubuntu:16.04 
+```
+
+2. Name the person, or the organization, who is maintaining and creating this image. 
+
+```sh
+MAINTAINER <<your name >> 
+```
+
+3. Run some Ubuntu commands so that we can set up the Python environment and update the operating system files. We will also download the server files that will be used to run the inference endpoints. You must be familiar with Linux commands to understand the script.
+    
+```sh
+
+RUN apt-get -y update && apt-get install -y --no-install-
+recommends \
+         wget \
+         python \
+         nginx \
+         ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+    
+
+```
+
+4. Once the setup is done, we can use pip from Python to install the important Python packages.
+
+```sh
+RUN wget https://bootstrap.pypa.io/get-pip.py && python get-pip.py && \
+   pip install numpy==1.16.2 scipy==1.2.1 scikit-learn==0.20.2 pandas flask gevent gunicorn && \
+        (cd /usr/local/lib/python2.7/dist-packages/scipy/.libs;
+        rm *; ln ../../numpy/.libs/* .) && \
+        rm -rf /root/.cache
+```
+
+5. Set the environment variables so that Python knows what the default folder is that will contain the code. Also, we will set some features of Python. We first make sure that timely log messages should be received from the container, and then we make sure that once any module is imported in Python, its .pyc file is not
+created. This is done using the variables pythonunbuffered and pythondontwritebytecode, respectively.
+
+```sh
+ENV PYTHONUNBUFFERED=TRUE
+ENV PYTHONDONTWRITEBYTECODE=TRUE
+ENV PATH="/opt/program:${PATH}"
+```
+
+6. Finally, the instance will instruct to copy our Data directory files to the default work directory, and then we will change the default work directory.
+
+```sh
+COPY Data /opt/program
+WORKDIR /opt/program
+
+```
+
