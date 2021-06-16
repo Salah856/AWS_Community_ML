@@ -210,3 +210,24 @@ The predictor file consists of the following components:
 
 The ScoringService() class consists of two functions. The first function, get_model(), loads and deserializes the model, while the second method, predict(), is responsible for making the predictions.
 
+
+```py
+
+class ScoringService(object):
+
+    model = None
+    
+    @classmethod
+    def get_model(cls):
+      if cls.model == None:
+          with open(os.path.join(model_path, 'randomForest-tree-model. pkl'), 'r') as inp:
+             cls.model = pickle.load(inp)
+        return cls.model
+        
+    @classmethod
+    def predict(cls, input):
+        clf = cls.get_model()
+        return clf.predict(input)
+        
+
+```
