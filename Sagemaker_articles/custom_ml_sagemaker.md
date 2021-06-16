@@ -373,3 +373,74 @@ WORKDIR /opt/program
 
 ```
 
+## Pushing the Docker Image to ECR
+We will create a shell script file, which will be used first to build the image from the Dockerfile that we created in the previous section and then to push the image to ECR. Let’s look at the step-by-step procedure for this:
+
+1. Name the image. We will save the name in a variable. 
+```sh
+algorithm_name=sagemaker-random-forest
+```
+
+2. Give full read and write permission to the train and serve files so that once the container is started, there are no access denied errors.
+``sh
+chmod +x Data/train
+chmod +x Data/serve
+```
+
+3. Get AWS configurations so that there is no stoppage when the image is being pushed. We will define the account and the region of our AWS. Remember, since we will be running this code from inside SageMaker, the information can be automatically fetched. If we are running this from your local system or anywhere outside of AWS, then we will have to give the custom values.
+
+```sh
+account=$(aws sts get-caller-identity --query Account
+--output text)
+region=$(aws configure get region)
+region=${region:-us-east-2}
+```
+
+4. Give the path and name to the container. We will use the same name that was given in the first step. We will use this path later to push the image.
+
+```sh
+fullname="${account}.dkr.ecr.${region}.amazonaws.com/${algorithm_name}:latest"
+```
+
+
+5. Check whether the image already exists. If it doesn’t, then a new image will be created; otherwise, the same image will be updated.
+
+```sh
+aws ecr describe-repositories --repository-names "${algorithm_name}" > /dev/null 2>&1
+
+if [ $? -ne 0 ]
+then
+    aws ecr create-repository --repository-name "${algorithm_name}" > /dev/null
+fi
+
+```
+
+6. Get the login credentials of the AWS account.
+```sh
+$(aws ecr get-login --region ${region} --no-include-email)
+```
+
+7. Build the image with the name already decided, rename it with the full name we decided on that contains the ECR address, and then finally push the code.
+
+```sh
+docker build  -t ${algorithm_name} .
+docker tag ${algorithm_name} ${fullname}
+docker push ${fullname}
+
+```
+
+Once this step is done, we have to go to the terminal, go inside the directory where your Dockerfile is present, and then type the following:
+
+```sh
+sh build_and_push.sh
+```
+
+This will start running the script and will successfully upload the image to ECR. You can then go to ECR and check whether the image exists.
+
+
+![1](https://user-images.githubusercontent.com/23625821/122172808-70975100-ce81-11eb-81c1-e0aa38034802.png)
+
+
+This finishes the process of creating the Docker. 
+
+
