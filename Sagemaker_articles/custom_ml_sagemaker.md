@@ -486,3 +486,22 @@ This will start the training job, and then once the job is finished, this will t
 ![1](https://user-images.githubusercontent.com/23625821/122174071-b3a5f400-ce82-11eb-861b-2dd4af49c251.png)
 
 
+## Deploying the Model
+
+Now that we have successfully trained the model, we can deploy it using the following line of script:
+
+```py
+from sagemaker.predictor import csv_serializer
+predictor = tree.deploy(1, 'ml.m4.xlarge', serializer=csv_serializer)
+```
+
+It will take some time to spin up an instance, and then it will be time to start our inference.
+
+## Doing Real-Time Inference
+
+Let’s use the test dataset of the Big Mart dataset and make predictions using the live endpoint we just deployed the model on.
+
+```py
+predictions = predictor.predict(test_data.values).decode('utf-8')
+```
+
