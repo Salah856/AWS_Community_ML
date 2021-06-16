@@ -243,3 +243,50 @@ def ping():
     
 
 ```
+
+transformation() is the method that is responsible for reading the test file and calling the required methods and classes. One thing to understand here is that this entire endpoint generation process is nothing but the creation of an API. Once the API is created, the data is sent as a POST request, and then we get the predictions as a response. This entire architecture is built using the Flask framework.
+
+
+The data is sent using the POST method, so to read it, we need the StringIO() method to decode the data. Once the data is decoded, we can read it with our normal
+Pandas method. The transformation() function sends the data to the predict() function of class ScoringService(). The method sends the output back to the transformation() function.
+
+
+This prediction output is sent back to the host from where the API is called, with help from the StringIO() function. This finishes the entire cycle of endpoints. The following is the code of transformation():
+
+```py
+
+@app.route('/invocations', methods=['POST'])
+def transformation():
+    data = None
+    
+    if flask.request.content_type == 'text/csv':
+        data = flask.request.data.decode('utf-8')
+        s = StringIO.StringIO(data)
+        data = pd.read_csv(s, header=None)
+    
+    else:
+        return flask.Response(response='This predictor only supports CSV data', status=415, mimetype='text/plain')
+    
+    # Do the prediction
+    predictions = ScoringService.predict(data)
+    
+    # Convert from numpy back to CSV
+    out = StringIO.StringIO()
+    
+    pd.DataFrame({'results':predictions}).to_csv(out, header=False, index=False)
+    result = out.getvalue()
+    
+    return flask.Response(response=result, status=200, mimetype='text/csv')
+
+
+```
+
+
+## Configuring the Endpoint Generation Files
+
+To run the inference server successfully, we need to configure the following files:
+
+- nginx.conf file
+- serve file
+- wsgi.py file
+
