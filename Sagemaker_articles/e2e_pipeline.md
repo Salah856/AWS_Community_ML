@@ -1,4 +1,5 @@
 
+
 #  End-to-End Pipeline in SageMaker
 
 In this part, we will see how we can make an end-to-end pipeline of an entire machine learning process. We can use a combination of AWS services to automate the entire process of machine learning.
