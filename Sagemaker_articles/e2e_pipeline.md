@@ -108,4 +108,121 @@ Once you click that role, you’ll move to the IAM role for that ARN. On that pa
 ![2](https://user-images.githubusercontent.com/23625821/122375462-88470600-cf63-11eb-8b54-3c8180456994.png)
 
 
+### Creating a New IAM Role for Step Functions
+
+Once we are done with enabling the instance to execute a Step Functions job, we need to create an execution role so that Step Functions is able to execute the jobs that are created. For this, again we need to go to the IAM console and create this role. Go to the IAM console, go to the Roles section, and then click “Create role.”
+
+![4](https://user-images.githubusercontent.com/23625821/122375821-deb44480-cf63-11eb-8cd1-6f08204a8082.png)
+
+
+Select the Step Functions service. You may need to search for the service.
+
+![3](https://user-images.githubusercontent.com/23625821/122375852-e378f880-cf63-11eb-8034-73486273e809.png)
+
+
+Now, continue the process and keep clicking Next until you arrive at the section where you need to provide the role name. Give any role name you want and then click “Create role.” Next, once we have created the role, we need to attach a policy to it. Here we will list all the services that the Step Functions service is allowed to do. We provide this list in JSON format.
+
+
+Click the role that you have just created, and then in the Permissions section click “Add inline policy.”
+
+
+![5](https://user-images.githubusercontent.com/23625821/122376154-2fc43880-cf64-11eb-983d-c47886c7b720.png)
+
+
+Here, you need to add a JSON file on the JSON tab. The file contents are shown here:
+
+```json
+
+{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+         "Effect": "Allow",
+         "Action": [
+           "sagemaker:CreateTransformJob",
+           "sagemaker:DescribeTransformJob",
+           
+           "sagemaker:StopTransformJob",
+           "sagemaker:CreateTrainingJob",
+           "sagemaker:DescribeTrainingJob",
+           
+           "sagemaker:StopTrainingJob",
+           "sagemaker:CreateHyperParameterTuningJob",
+           
+           "sagemaker:DescribeHyperParameterTuningJob",
+           "sagemaker:StopHyperParameterTuningJob",
+           
+           "sagemaker:CreateModel",
+           "sagemaker:CreateEndpointConfig",
+           
+           "sagemaker:CreateEndpoint",
+           "sagemaker:DeleteEndpointConfig",
+           
+           "sagemaker:DeleteEndpoint",
+           "sagemaker:UpdateEndpoint",
+           "sagemaker:ListTags",
+           
+           "lambda:InvokeFunction",
+           "sqs:SendMessage",
+           "sns:Publish",
+           
+           "ecs:RunTask",
+           "ecs:StopTask",
+           
+           "ecs:DescribeTasks",
+           "dynamodb:GetItem",
+           
+           "dynamodb:PutItem",
+           "dynamodb:UpdateItem",
+           
+           "dynamodb:DeleteItem",
+           "batch:SubmitJob",
+           "batch:DescribeJobs",
+           
+           "batch:TerminateJob",
+           "glue:StartJobRun",
+           
+           "glue:GetJobRun",
+           "glue:GetJobRuns",
+           "glue:BatchStopJobRun"
+            ],
+         "Resource": "*"
+     },
+     {
+         "Effect": "Allow",
+         "Action": [
+            "iam:PassRole"
+       ],
+         "Resource": "*",
+          "Condition": {
+            "StringEquals": {
+               "iam:PassedToService": "sagemaker.amazonaws.com"
+            }
+         }
+      }, 
+      {
+         "Effect": "Allow",
+         "Action": [
+            "events:PutTargets",
+            "events:PutRule",
+            "events:DescribeRule"
+         ],
+         "Resource": [
+           
+           "arn:aws:events:*:*:rule/StepFunctionsGetEventsForSageMakerTrainingJobsRule",
+           "arn:aws:events:*:*:rule/StepFunctionsGetEventsForSageMakerTransformJobsRule",
+           "arn:aws:events:*:*:rule/StepFunctionsGetEventsForSageMakerTuningJobsRule",
+           
+           "arn:aws:events:*:*:rule/StepFunctionsGetEventsForECSTaskRule",
+           "arn:aws:events:*:*:rule/StepFunctionsGetEventsForBatchJobsRule"
+          
+          ]
+      }
+   ]
+}
+
+
+```
+
+
 
