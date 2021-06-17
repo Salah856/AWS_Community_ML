@@ -285,4 +285,23 @@ model_step = steps.ModelStep(
 
 ```
 
+## Setting Up the Endpoint Configuration Step
+
+In this step, we will define what kind of resources are required to deploy the endpoint.
+
+
+```py
+
+endpoint_config_step = steps.EndpointConfigStep(
+    "Create Endpoint Config",
+    endpoint_config_name=execution_input['ModelName'],
+    model_name=execution_input['ModelName'],
+    initial_instance_count=1,
+    instance_type='ml.m4.xlarge'
+)
+
+```
+
+Once our configuration is done, we will create the step that will actually deploy the endpoint. Let’s see that in the next section.
+
 
