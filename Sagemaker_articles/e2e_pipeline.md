@@ -401,3 +401,4 @@ This also helps in creating a CI/CD pipeline where we can push the code to Git a
 
 Hence, as you push to code to Git, immediately the process of training starts. That’s the power of creating a pipeline.
 
+
