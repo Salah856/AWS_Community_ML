@@ -247,3 +247,43 @@ execution_input = ExecutionInput(schema=names)
 ```
 
 
+Next, we will create a training step by using the XGBoost container that we already learned about in the previous parts. The first step will be to initialize the container.
+
+```py
+
+tree = sage.estimator.Estimator(image,
+            sagemaker_execution_role, 1, 'ml.m4.xlarge',
+            output_path="s3://{}/output".format("slytherins-test"),
+            sagemaker_session=sess)
+            
+```
+
+Next, we need to create the training step. This is done by providing the path to the input training and validation data.
+
+```py
+
+training_step = steps.TrainingStep(
+    'Train Step',
+    estimator=tree,
+    data={
+        'train': sagemaker.s3_input("s3://slytherins-test/Train.csv", content_type='text/csv'),
+        'validation': sagemaker.s3_input("s3://slytherins-test/test_data.csv", content_type='text/csv')
+    },
+    job_name=execution_input['JobName']
+)
+```
+
+
+Remember, this will not execute the model. Only a step is created here. First, we will create all the steps and then combine them and run them sequentially. Let’s now decide on the step for saving the model. Once in the pipeline, the previous training is finished, and the model artifacts that are generated should be saved. That is done using the following code:
+
+
+```py
+model_step = steps.ModelStep(
+    'Save model',
+    model=training_step.get_expected_model(),
+    model_name=execution_input['ModelName']
+)
+
+```
+
+
