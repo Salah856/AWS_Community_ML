@@ -83,3 +83,29 @@ As you can see in the code, we require two roles. One is the SageMaker execution
 
 Now let’s see how we can create the required IAM role for workflow execution.
 
+
+## Setting Up the Required Roles
+
+We need to set up two things to be able to execute the workflow:
+
+1. We need to add a policy on the already existing SageMaker role.
+2. We need to create a new Step Functions IAM role.
+
+
+### Adding a Policy to the Existing SageMaker Role
+
+It’s easy to update the policy so that it can access the features of Step Functions. In the SageMaker console, we need to click the name of the notebook instance that we are using. This will lead us to a page showing the properties of the notebook instance.
+
+In that page there will be a section named “Permissions and encryption.” There you will find your ARN role mentioned for the instance.
+
+
+![1](https://user-images.githubusercontent.com/23625821/122375345-6e0d2800-cf63-11eb-868b-4cecd1574393.png)
+
+
+Once you click that role, you’ll move to the IAM role for that ARN. On that page, you’ll need to click Attach Policies and search for AWSStepFunctionsFullAccess. Attach this policy, and now your SageMaker instance is ready to use Step Functions.
+
+
+![2](https://user-images.githubusercontent.com/23625821/122375462-88470600-cf63-11eb-8b54-3c8180456994.png)
+
+
+
