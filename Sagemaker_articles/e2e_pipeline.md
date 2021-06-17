@@ -305,3 +305,18 @@ endpoint_config_step = steps.EndpointConfigStep(
 Once our configuration is done, we will create the step that will actually deploy the endpoint. Let’s see that in the next section.
 
 
+## Setting Up the Endpoint Step
+
+The following code creates a step that is used for the endpoint deployment:
+
+```py
+
+endpoint_step = steps.EndpointStep(
+    "Create Endpoint",
+    endpoint_name=execution_input['EndpointName'],
+    endpoint_config_name=execution_input['ModelName']
+)
+
+```
+
+Once the endpoint is deployed, we can start the inference as we saw in the previous sections.
