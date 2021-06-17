@@ -16,3 +16,7 @@ Each component in a step function is called a state machine. In this part, we wi
 - State machine for configuring endpoints
 - State machine for model deployment
 
+
+Then we will combine all the state machines in a sequential format so that the entire process can be automated. 
+
+![1](https://user-images.githubusercontent.com/23625821/122373789-102c1080-cf62-11eb-96af-e86e1659e6dc.png)
