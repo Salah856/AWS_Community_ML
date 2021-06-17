@@ -337,3 +337,36 @@ workflow_definition = steps.Chain([
 ])
 
 ```
+
+## Defining the Workflow and Starting Operation
+Now that the components are connected in the previous step, we need to provide all the necessary configurations so that this workflow can be executed. This can be done using the following code:
+
+```py
+
+workflow = Workflow(
+    name='Big-Mart_Workflow-v1',
+    definition=workflow_definition,
+    role=workflow_execution_role,
+    execution_input=execution_input
+)
+
+```
+
+Once this is done, all we need to do is execute the workflow created. This can be done by using the following code:
+
+```py
+
+workflow.create()
+
+execution = workflow.execute(
+    inputs={
+      'JobName': 'regression-{}'.format(uuid.uuid1().hex),
+      'ModelName': 'regression-{}'.format(uuid.uuid1().hex),
+      'EndpointName': 'regression-{}'.format(uuid.uuid1().hex)
+    }
+)
+
+````
+
+
+
