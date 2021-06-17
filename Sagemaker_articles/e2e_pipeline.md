@@ -319,4 +319,21 @@ endpoint_step = steps.EndpointStep(
 
 ```
 
-Once the endpoint is deployed, we can start the inference as we saw in the previous sections.
+Once the endpoint is deployed, we can start the inference as we saw in the previous sections. Let's join (chain) them together. 
+
+
+## Creating a Chain of the Steps
+
+To create a chain, we will start with the training step, then move on to the model saving step, then configure the endpoint, and finally deploy the model on the endpoint configured. We can create this chain using the following code:
+
+
+```py
+
+workflow_definition = steps.Chain([
+    training_step,
+    model_step,
+    endpoint_config_step,
+    endpoint_step
+])
+
+```
