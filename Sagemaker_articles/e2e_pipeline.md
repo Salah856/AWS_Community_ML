@@ -387,3 +387,17 @@ You can also check the current progress of the process executed, by using the re
 execution.render_progress()
 
 ```
+
+![1](https://user-images.githubusercontent.com/23625821/122437690-3a99c000-cf9a-11eb-9833-09bd360386bb.png)
+
+
+## Conclusion
+
+In this part, you learned how to create an end-to-end pipeline using Step Functions. 
+
+This is useful when creating the entire training and deployment process and when retraining models with the new data or with some new configuration.
+
+This also helps in creating a CI/CD pipeline where we can push the code to Git and then use tools such as Jenkins or Bamboo to create these step functions and start the execution.
+
+Hence, as you push to code to Git, immediately the process of training starts. That’s the power of creating a pipeline.
+
