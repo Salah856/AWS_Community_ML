@@ -20,3 +20,17 @@ Each component in a step function is called a state machine. In this part, we wi
 Then we will combine all the state machines in a sequential format so that the entire process can be automated. 
 
 ![1](https://user-images.githubusercontent.com/23625821/122373789-102c1080-cf62-11eb-96af-e86e1659e6dc.png)
+
+
+Let’s start the process of creating the previous workflow. The first step will be to upgrade the Step Functions package so that we can make sure we are using the latest version of the module.
+
+## Upgrading Step Functions
+We will simply use pip from Python to upgrade the Step Functions package and all the dependent packages.
+
+```sh
+python -m pip install --upgrade stepfunctions
+```
+
+
+
+You can run this either from the terminal or from the Jupyter Notebook as well by adding a prefix of exclamation mark (!).
