@@ -224,5 +224,26 @@ Here, you need to add a JSON file on the JSON tab. The file contents are shown h
 
 ```
 
+Once that’s done, you can review the policy, give it a name, and then create the policy. Don’t forget to copy the ARN number of the policy you just created. This will help you when creating code in SageMaker.
+
+
+## Setting Up the Training Step
+
+In the previous section, we completed all the necessary configuration steps to run our code to create a pipeline. In this section, we will create the first step: TrainingStep. The first thing that we will do is to create a dictionary that will auto-initialize the training job name, the model name, and the endpoint name. We can do so using the following code:
+
+
+```py
+
+names = {
+
+    'JobName': str,
+    'ModelName': str,
+    'EndpointName': str
+
+}
+
+execution_input = ExecutionInput(schema=names)
+
+```
 
 
