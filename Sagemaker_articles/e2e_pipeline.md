@@ -380,3 +380,10 @@ workflow.render_graph()
 ![1](https://user-images.githubusercontent.com/23625821/122437428-fdcdc900-cf99-11eb-9767-6ec91e344730.png)
 
 
+You can also check the current progress of the process executed, by using the render_progress() function.
+
+```py
+
+execution.render_progress()
+
+```
