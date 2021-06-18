@@ -120,3 +120,16 @@ functions:
 ```
 
 
+### Model download from S3:
+```py
+
+strBucket = 'ryfeuslambda'
+strKey = 'tensorflow/imagenet/classify_image_graph_def.pb'
+strFile = '/tmp/imagenet/classify_image_graph_def.pb'
+
+downloadFromS3(strBucket,strKey,strFile)
+print(strFile)
+
+```
+
+
