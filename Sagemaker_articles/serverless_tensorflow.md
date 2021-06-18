@@ -25,3 +25,41 @@ So to make deep learning API, we would need stack like this:
 ![deep-learning-api-stack](https://user-images.githubusercontent.com/23625821/122518916-22fe1e00-d012-11eb-9ce7-e766a007487f.gif)
 
 
+The main pain points in this infrastructure is that:
+
+- you have to manage the cluster - its size, type and logic for scaling. 
+- you have to pay for unused server power.
+- you have to manage the container logic - logging, handling of multiple requests, etc.
+
+
+With AWS Lambda, we can make the stack significantly easier and use simpler architecture:
+
+![serverless-tensorflow-architecture](https://user-images.githubusercontent.com/23625821/122519107-6062ab80-d012-11eb-91dd-b78bd1a0e6e6.png)
+
+
+
+## The difference in both approaches
+
+First of all, a serverless serverless approach is very scalable. It can scale up to 10k concurrent requests without writing any additional logic. It’s perfect for handling random high loads, as it doesn’t take any additional time to scale.
+
+Second, you don’t have to pay for unused server time. Serverless architectures have pay-as-you-go model. Meaning, if you have 25k requests per month, you will only pay for 25k requests.
+
+And not only does it make pricing completely transparent, it’s just a lot cheaper. For the example TensorFlow model we’ll cover in this post, it costs 1$ for about 25k requests. A similar cluster would cost a lot more, and you’d only achieve pricing parity once you hit 1M requests.
+
+Third, infrastructure itself becomes a lot easier. You don’t have to handle Docker containers, logic for multiple requests, or cluster orchestration.
+
+Bottom line: you don’t have to hire someone to do devops for this, as any backend developer can easily handle it.
+
+As we’ll see in a minute, deploying a serverless deep/machine learning infrastructure can be done with as little as 4 lines of code.
+
+
+That said, when wouldn’t you go with a serverless approach? There are some limitations to be aware of:
+
+- Lambda has strict limits in terms of processing time and used memory, you’ll want to make sure you won’t be hitting those
+
+- As mentioned above, clusters are more cost effective after a certain number of requests. In cases where you don’t have peak loads and the number of requests is really high (I mean 10M per month high), a cluster will actually save you money.
+
+- Lambda has a small, but certain, startup time. TensorFlow also has to download the model from S3 to start up. For the example in this post, a cold execution will take 4.5 seconds and a warm execution will take 3 seconds. It may not be critical for some applications, but if you are focused on real-time execution then a cluster will be more responsive.
+
+
+
