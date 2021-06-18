@@ -96,7 +96,27 @@ serverless invoke --function main --log
 
 ```
 
+### Code decomposition - breaking down the model
 
+Let’s start with serverless YAML file. Nothing uncommon here—we’re using a pretty standard deployment method:
 
+```yaml
+
+service: tensorflow
+
+frameworkVersion: ">=1.2.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: python2.7
+  memorySize: 1536
+  timeout: 300
+
+functions:
+  main:
+    handler: index.handler
+    
+
+```
 
 
