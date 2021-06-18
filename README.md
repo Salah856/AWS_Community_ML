@@ -19,11 +19,6 @@ Part 7: https://dev.to/aws-builders/using-cloudwatch-in-sagemaker-pm7
 
 Part 8:  https://dev.to/aws-builders/running-custom-algorithm-in-aws-sagemaker-4jdf
 
-<!-- Part 9  -->
+Part 9: https://dev.to/aws-builders/building-end-to-end-pipeline-in-sagemaker-2g03 
 
-<!-- Part 10  -->
-
-<!-- Part 11  -->
-
-<!-- Part 12  -->
 
