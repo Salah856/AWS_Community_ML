@@ -210,3 +210,23 @@ serverless deploy
 
 ```
 
+
+To test the link, we can just open it in the browser:
+
+https://.execute-api.us-east-1.amazonaws.com/dev/handler
+
+Or run curl:
+
+```bash
+
+curl https://<urlkey>.execute-api.us-east-1.amazonaws.com/dev/handler
+
+```
+
+
+### Conclusion
+
+We’ve created a TensorFlow endpoint on AWS Lambda via the Serverless Framework. Setting everything up was extremely easy, and saved us a lot of time over the more traditional approach.
+
+By modifying the serverless YAML file, you can connect SQS and, say, create a deep learning pipeline, or even connect it to a chatbot via AWS Lex.
+
