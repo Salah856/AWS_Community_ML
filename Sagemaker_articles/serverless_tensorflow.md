@@ -44,7 +44,7 @@ First of all, a serverless serverless approach is very scalable. It can scale up
 
 Second, you don’t have to pay for unused server time. Serverless architectures have pay-as-you-go model. Meaning, if you have 25k requests per month, you will only pay for 25k requests.
 
-And not only does it make pricing completely transparent, it’s just a lot cheaper. For the example TensorFlow model we’ll cover in this post, it costs 1$ for about 25k requests. A similar cluster would cost a lot more, and you’d only achieve pricing parity once you hit 1M requests.
+And not only does it make pricing completely transparent, it’s just a lot cheaper. For the example TensorFlow model we’ll cover in this article, it costs 1$ for about 25k requests. A similar cluster would cost a lot more, and you’d only achieve pricing parity once you hit 1M requests.
 
 Third, infrastructure itself becomes a lot easier. You don’t have to handle Docker containers, logic for multiple requests, or cluster orchestration.
 
@@ -59,7 +59,44 @@ That said, when wouldn’t you go with a serverless approach? There are some lim
 
 - As mentioned above, clusters are more cost effective after a certain number of requests. In cases where you don’t have peak loads and the number of requests is really high (I mean 10M per month high), a cluster will actually save you money.
 
-- Lambda has a small, but certain, startup time. TensorFlow also has to download the model from S3 to start up. For the example in this post, a cold execution will take 4.5 seconds and a warm execution will take 3 seconds. It may not be critical for some applications, but if you are focused on real-time execution then a cluster will be more responsive.
+- Lambda has a small, but certain, startup time. TensorFlow also has to download the model from S3 to start up. For the example in this part, a cold execution will take 4.5 seconds and a warm execution will take 3 seconds. It may not be critical for some applications, but if you are focused on real-time execution then a cluster will be more responsive.
+
+
+## The basic 4 line example
+
+Let’s get started with our serverless deep learning API! For this example, I’m using a pretty popular application of neural networks: image recognition. Our application will take an image as input, and return a description of the object in it.
+
+These kinds of applications are commonly used to filter visual content or classify stacks of images in certain groups.
+
+
+We’ll use the following stack:
+
+- API Gateway for managing requests
+- AWS Lambda for processing
+- Serverless framework for handling deployment and configuration
+
+
+### “Hello world” code
+
+To get started, you’ll need to have the Serverless Framework installed ( https://www.serverless.com/framework/docs/providers/aws/guide/installation/ ) 
+
+
+Create an empty folder and run following commands in the CLI:
+
+```bash
+
+serverless install -u https://github.com/ryfeus/lambda-packs/tree/master/Tensorflow/source -n tensorflow
+
+cd tensorflow
+
+serverless deploy
+
+serverless invoke --function main --log
+
+
+```
+
+
 
 
 
