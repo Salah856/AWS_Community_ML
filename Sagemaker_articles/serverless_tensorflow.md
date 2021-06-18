@@ -166,3 +166,14 @@ print(strFile)
         
   
   ```
+
+
+### Getting predictions from the model:
+
+```py
+        softmax_tensor = sess.graph.get_tensor_by_name('softmax:0')
+        predictions = sess.run(softmax_tensor,
+                               {'DecodeJpeg/contents:0': image_data})
+        predictions = np.squeeze(predictions)
+```
+
