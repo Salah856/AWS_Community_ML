@@ -171,9 +171,42 @@ print(strFile)
 ### Getting predictions from the model:
 
 ```py
-        softmax_tensor = sess.graph.get_tensor_by_name('softmax:0')
-        predictions = sess.run(softmax_tensor,
-                               {'DecodeJpeg/contents:0': image_data})
-        predictions = np.squeeze(predictions)
+softmax_tensor = sess.graph.get_tensor_by_name('softmax:0')
+predictions = sess.run(softmax_tensor, {'DecodeJpeg/contents:0': image_data})
+predictions = np.squeeze(predictions)
+
+```
+
+### API example
+
+The simplest way to add an API to the example is to modify the serverless YAML file:
+
+
+```yaml 
+
+service: tensorflow
+
+frameworkVersion: ">=1.2.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: python2.7
+  memorySize: 1536
+  timeout: 300
+
+functions:
+  main:
+    handler: index.handler
+    events:
+      - http: GET handler
+
+```
+
+Then, we redeploy the stack:
+
+```bash
+
+serverless deploy
+
 ```
 
