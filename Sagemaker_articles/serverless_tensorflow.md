@@ -133,3 +133,36 @@ print(strFile)
 ```
 
 
+  ### Model import 
+  
+  ```py
+  
+  def create_graph():
+    with tf.gfile.FastGFile(os.path.join('/tmp/imagenet/', 'classify_image_graph_def.pb'), 'rb') as f:
+        graph_def = tf.GraphDef()
+        graph_def.ParseFromString(f.read())
+        _ = tf.import_graph_def(graph_def, name='')
+        
+  
+  ```
+  
+  
+  ### Getting the image
+  
+  
+  ```py
+  
+  strFile = '/tmp/imagenet/inputimage.jpg'
+  
+ if ('imagelink' in event):
+    urllib.urlretrieve(event['imagelink'], strFile)
+ 
+ else:
+    strBucket = 'ryfeuslambda'
+    strKey = 'tensorflow/imagenet/cropped_panda.jpg'
+    
+    downloadFromS3(strBucket, strKey, strFile)
+    print(strFile)
+        
+  
+  ```
