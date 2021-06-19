@@ -83,3 +83,31 @@ my_sagemaker_studio_user_template = cfn_inc.CfnInclude(self, "UserProfileSagemak
 The preserveLogicalIds parameter makes sure the logical IDs of the user profile are renamed using the AWS CDK algorithm, which makes sure they’re unique within your application. Without that parameter passed, instantiating SagemakerStudioUserConstruct twice in the same Stack results in duplicated logical IDs.
 
 For simplicity, we use only the mandatory fields in the constructs, but you can add the fields that the native resource supports to the construct and map them as parameters in your CloudFormation template.
+
+
+## Deploy your AWS CDK stack
+
+To deploy your AWS CDK stack, run the following commands in the location where you cloned the repository:
+
+```bash
+
+python3 –m venv .cdk-venv
+source .cdk-venv/bin/activate
+pip install –r requirements.txt
+cdk deploy
+
+```
+
+Review the resources that AWS CDK creates for you in your AWS account and choose yes to deploy the stack.
+
+Wait for your stack to be deployed by checking the status on the AWS CloudFormation console.
+
+![1-2351-Console](https://user-images.githubusercontent.com/23625821/122630616-5b126900-d0c5-11eb-9fe6-efe1c1553533.jpg)
+
+
+When the stack is complete, on the Amazon SageMaker console, choose Amazon SageMaker Studio. You can see a Studio domain created and the user profile added to your Studio Control Panel.
+
+
+![2-2351-Console](https://user-images.githubusercontent.com/23625821/122630624-72515680-d0c5-11eb-9dc5-424ff4fb6248.jpg)
+
+
