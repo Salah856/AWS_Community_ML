@@ -124,3 +124,11 @@ When asked to confirm the deletion of the stack, select yes.
 ## Conclusion
 This article showed how you can easily create a Studio domain and add a user profile to the Studio Control Panel using the AWS CDK—without using any custom resources.
 
+
+### References: 
+
+https://aws.amazon.com/blogs/machine-learning/automate-amazon-sagemaker-studio-setup-using-aws-cdk/
+
+https://github.com/aws-samples/amazon-sagemaker-model-serving-using-aws-cdk
+
+
