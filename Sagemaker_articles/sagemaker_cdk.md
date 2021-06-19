@@ -28,3 +28,20 @@ As you clone the repo, you can observe that we have a classic AWS CDK project wi
 - sagemaker-domain-template and sagemaker-user-template – The CloudFormation templates for the native resources to create the Studio domain and user profile
 - sagemakerStudioCDK/sagemaker_studio_stack.py – The AWS CDK stack that calls our constructs to create first the Studio domain and add the user profile
 
+
+## AWS CDK constructs
+
+When we open sagemakerStudioConstructs/__init__.py, we find two AWS CDK constructs:
+
+- SagemakerStudioDomainConstruct – The construct takes as input the mandatory fields required for the native resource AWS::SageMaker::Domain and outputs the Studio domain ID with the following parameters:
+
+-- sagemaker_domain_name – The name of the newly created Studio domain
+-- vpc_id – The ID of the Amazon Virtual Private Cloud (Amazon VPC) that the domain uses for communication
+
+-- subnet_ids – The VPC subnets that the domain uses for communication
+-- default_execution_role_user – The IAM execution role for the user by default
+
+- SagemakerStudioUserConstruct – The construct takes as input the mandatory fields required for the native resource AWS::SageMaker::UserProfile, with the following parameters :
+
+-- sagemaker_domain_id – The Studio domain ID
+-- user_profile_name – The user profile name
