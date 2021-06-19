@@ -25,6 +25,7 @@ As you clone the repo, you can observe that we have a classic AWS CDK project wi
 - app.py – The entry point to deploy the AWS CDK stack sagemakerStudioCDK
 - sagemakerStudioConstructs – Our AWS CDK constructs using the AWS CloudFormation resources from sagemakerStudioCloudformationStack
 
+
 - sagemaker-domain-template and sagemaker-user-template – The CloudFormation templates for the native resources to create the Studio domain and user profile
 - sagemakerStudioCDK/sagemaker_studio_stack.py – The AWS CDK stack that calls our constructs to create first the Studio domain and add the user profile
 
