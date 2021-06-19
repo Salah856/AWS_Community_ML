@@ -48,3 +48,38 @@ When we open sagemakerStudioConstructs/__init__.py, we find two AWS CDK construc
 -- sagemaker_domain_id – The Studio domain ID
 
 -- user_profile_name – The user profile name
+
+With the cfn_inc function from the module cloudformation_include of aws_cdk, we can include CloudFormation templates in an AWS CDK project.
+
+The constructs use cfn_inc.CfnInclude to call the native AWS CloudFormation resource with the appropriate parameters. See the following code:
+
+
+```py
+
+my_sagemaker_domain = cfn_inc.CfnInclude(self, construct_id,
+                                         template_file=path.join(path.dirname(path.abspath(__file__)),
+                                           "sagemakerStudioCloudformationStack/sagemaker-domain-template.yaml"),
+                                         parameters={
+                                            "auth_mode": "IAM",
+                                            "domain_name": sagemaker_domain_name,
+                                            "vpc_id": vpc_id,
+                                            "subnet_ids": subnet_ids,
+                                            "default_execution_role_user": role_sagemaker_studio_users.role_arn,
+                                         })
+                                         
+                                         
+my_sagemaker_studio_user_template = cfn_inc.CfnInclude(self, "UserProfileSagemakerStudio",
+                                                       template_file=path.join(
+                                                          path.dirname(path.abspath(__file__)),
+                                                 "sagemakerStudioCloudformationStack/sagemaker-user-template.yaml"),
+                                                       parameters={
+                                                          "sagemaker_domain_id": sagemaker_domain_id,
+                                                          "user_profile_name": user_profile_name
+                                                       },
+                                                       preserve_logical_ids=False)
+                                                       
+```
+
+The preserveLogicalIds parameter makes sure the logical IDs of the user profile are renamed using the AWS CDK algorithm, which makes sure they’re unique within your application. Without that parameter passed, instantiating SagemakerStudioUserConstruct twice in the same Stack results in duplicated logical IDs.
+
+For simplicity, we use only the mandatory fields in the constructs, but you can add the fields that the native resource supports to the construct and map them as parameters in your CloudFormation template.
