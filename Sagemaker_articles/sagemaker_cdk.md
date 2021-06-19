@@ -5,3 +5,16 @@ Amazon SageMaker Studio is the first fully integrated development environment (I
 
 In this article, we see how to use the AWS Cloud Development Kit (AWS CDK) to use the new native resource in AWS CloudFormation to set up Studio and configure its access for data scientists and developers in your organization. This way you can set up Studio quickly and consistently, enabling you to apply DevOps best practices and meet safety, compliance, and configuration standards across all AWS accounts and Regions. We use Python as the main language, but the code can be easily changed to other AWS CDK supported languages.
 
+
+The AWS CDK is an open-source software development framework to model and provision your cloud application resources using familiar programming languages.
+
+
+
+## Prerequisites
+
+To get started, make sure you have the following prerequisites:
+
+- The AWS Command Line Interface (AWS CLI) installed
+- The AWS CDK installed
+- An AWS profile with permissions to create AWS Identity and Access Management (AWS IAM) roles, Studio domains, and Studio user profiles
+
