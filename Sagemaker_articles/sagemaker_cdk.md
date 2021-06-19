@@ -18,3 +18,13 @@ To get started, make sure you have the following prerequisites:
 - The AWS CDK installed
 - An AWS profile with permissions to create AWS Identity and Access Management (AWS IAM) roles, Studio domains, and Studio user profiles
 
+First, let’s clone the demo code from GitHub using your method of choice at: https://github.com/aws-samples/aws-cdk-sagemaker-studio. 
+
+As you clone the repo, you can observe that we have a classic AWS CDK project with the following components:
+
+- app.py – The entry point to deploy the AWS CDK stack sagemakerStudioCDK
+- sagemakerStudioConstructs – Our AWS CDK constructs using the AWS CloudFormation resources from sagemakerStudioCloudformationStack
+
+- sagemaker-domain-template and sagemaker-user-template – The CloudFormation templates for the native resources to create the Studio domain and user profile
+- sagemakerStudioCDK/sagemaker_studio_stack.py – The AWS CDK stack that calls our constructs to create first the Studio domain and add the user profile
+
