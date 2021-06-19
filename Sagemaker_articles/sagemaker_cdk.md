@@ -111,3 +111,16 @@ When the stack is complete, on the Amazon SageMaker console, choose Amazon SageM
 ![2-2351-Console](https://user-images.githubusercontent.com/23625821/122630624-72515680-d0c5-11eb-9dc5-424ff4fb6248.jpg)
 
 
+You can update the domain by deploying the same stack again, because the domain creation was with preserve_logical_ids = True by default.
+
+
+## Clean up:
+
+To avoid ongoing charges for resources you created destroy your AWS CDK stack by running the following commands in the location where you have cloned the repository: cdk destroy
+
+When asked to confirm the deletion of the stack, select yes.
+
+
+## Conclusion
+This article showed how you can easily create a Studio domain and add a user profile to the Studio Control Panel using the AWS CDK—without using any custom resources.
+
