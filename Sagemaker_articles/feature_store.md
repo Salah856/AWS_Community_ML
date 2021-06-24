@@ -21,5 +21,10 @@ Let’s use a diagram to explain the concept of a point-in-time feature query. I
 
 
 
-https://aws.amazon.com/blogs/machine-learning/build-accurate-ml-training-datasets-using-point-in-time-queries-with-amazon-sagemaker-feature-store-and-apache-spark/
+
+## Sources 
+
+<a href="https://aws.amazon.com/blogs/machine-learning/build-accurate-ml-training-datasets-using-point-in-time-queries-with-amazon-sagemaker-feature-store-and-apache-spark/"> AWS Blog </a>
+
+
 
