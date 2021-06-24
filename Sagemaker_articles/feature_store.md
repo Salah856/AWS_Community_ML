@@ -10,3 +10,6 @@ Feature Store lets you define groups of features, use batch ingestion and stream
 
 In ML, data leakage or target leakage is accidentally using data in model training that wouldn’t be available at the time of prediction. Leakage can be subtle and difficult to detect, yet the business impact can be significant. Models with leakage perform unrealistically well in development, but they deliver poor model accuracy in production without the benefit of future data.
 
+
+So how do data science teams provide a rich set of ML features, while ensuring they don’t leak future data into their trained models? Companies are increasingly adopting the use of a feature store to help solve this model training challenge. A robust feature store provides an offline store with a complete history of feature values. Feature records include timestamps to support point-in-time correct queries. Data scientists can query for the exact set of feature values that would have been available at a specific time, without the chance of including data from beyond that time.
+
