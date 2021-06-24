@@ -15,3 +15,8 @@ So how do data science teams provide a rich set of ML features, while ensuring t
 
 Let’s use a diagram to explain the concept of a point-in-time feature query. Imagine we’re training a fraud detection model on a set of historical transactions. Each transaction has features associated with various entities involved in the transaction, such as the consumer, merchant, and credit card. Feature values for these entities change over time, and they’re updated on different schedules. To avoid leaking future feature values, a point-in-time query retrieves the state of each feature that was available at each transaction time, and no later. For example, the transaction at time t2 can only use features available before time t2, and the transaction at t1 can’t use features from timestamps greater than t1.
 
+
+
+![1-3177-Diagram](https://user-images.githubusercontent.com/23625821/123223189-fabe6580-d4d0-11eb-850f-83bf265f1e64.jpg)
+
+
