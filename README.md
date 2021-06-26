@@ -22,5 +22,3 @@ Part 8:  https://dev.to/aws-builders/running-custom-algorithm-in-aws-sagemaker-4
 
 Part 9: https://dev.to/aws-builders/building-end-to-end-pipeline-in-sagemaker-2g03 
 
-
-
