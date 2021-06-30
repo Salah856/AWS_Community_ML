@@ -64,4 +64,15 @@ func medianValue(x []float64) float64 {
 }
 
 
+func variance(x []float64) float64 {
+ 
+ mean := meanValue(x)
+ sum := float64(0)
+ 
+ for _, v := range x {
+    sum = sum + (v-mean)*(v-mean)
+ }
+  return sum / float64(len(x))
+}
+
 ```
