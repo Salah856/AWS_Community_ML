@@ -200,3 +200,11 @@ fmt.Printf("a = %.4v b = %.4v\n", a, b)
 
 ## Classification
 
+In statistics and machine learning, classification is the process of putting elements into existing sets that are called categories. In machine learning, classification is considered a supervised learning technique, which is where a set that is considered to contain correctly identified observations is used for training before working with the actual data.
+
+
+A very popular and easy-to-implement classification method is called k-nearest neighbors (k-NN). The idea behind k-NN is that we can classify data items based on their similarity with other items. The k in k-NN denotes the number of neighbors that are going to be included in the decision, which means that k is a positive integer that is usually pretty small.
+
+
+The input of the algorithm consists of the k-closest training examples in the feature space. An object is classified by a plurality vote of its neighbors, with the object being assigned to the class that is the most common among its k-NN. If the value of k is 1 , then the element is simply assigned to the class that is the nearest neighbor according to the distance metric used. The distance metric depends on the data you are dealing with. As an example, you will need a different distance metric when working with complex numbers and another when working with points in three-dimensional space.
+
