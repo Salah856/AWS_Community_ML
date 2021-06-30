@@ -137,6 +137,44 @@ type xy struct {
 }
 
 
+func main() {
+  
+  flag.Parse()
+  
+  if len(flag.Args()) == 0 {
+    fmt.Printf("usage: regression filename\n")
+    return
+  }
+
+  filename := flag.Args()[0]
+
+  file, err := os.Open(filename)
+
+ if err != nil {
+
+    fmt.Println(err)
+   return
+
+ }
+
+defer file.Close()
+
+r := csv.NewReader(file)
+
+records, err := r.ReadAll()
+
+if err != nil {
+  fmt.Println(err)
+  return
+}
+
+size := len(records)
+
+data := xy{
+ x: make([]float64, size),
+ y: make([]float64, size),
+}
+
 
 ```
 
