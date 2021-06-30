@@ -41,5 +41,14 @@ func max(x []float64) float64 {
 }
 
 
+func meanValue(x []float64) float64 {
+ sum := float64(0)
+ for _, v := range x {
+   sum = sum + v
+ }
+  return sum / float64(len(x))
+}
+
+
 
 ```
