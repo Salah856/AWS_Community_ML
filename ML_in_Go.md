@@ -15,4 +15,31 @@ All these statistical properties will be computed in stats.go , which will be pr
 Notice that input will be stored in a slice in order to use a separate function for calculating each property. Also, as you will see shortly, the values of the slice will be sorted before processing them.
 
 
+```go 
 
+package main
+
+import (
+  "bufio"
+  "flag"
+  "fmt"
+  "io"
+  "math"
+  "os"
+  "sort"
+  "strconv"
+  "strings"
+)
+
+
+func min(x []float64) float64 {
+  return x[0]
+}
+
+func max(x []float64) float64 {
+  return x[len(x)-1]
+}
+
+
+
+```
