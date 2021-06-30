@@ -208,3 +208,23 @@ A very popular and easy-to-implement classification method is called k-nearest n
 
 The input of the algorithm consists of the k-closest training examples in the feature space. An object is classified by a plurality vote of its neighbors, with the object being assigned to the class that is the most common among its k-NN. If the value of k is 1 , then the element is simply assigned to the class that is the nearest neighbor according to the distance metric used. The distance metric depends on the data you are dealing with. As an example, you will need a different distance metric when working with complex numbers and another when working with points in three-dimensional space.
 
+
+```go 
+
+package main
+
+
+import (
+ 
+ "flag"
+ "fmt"
+ "strconv"
+ "github.com/sjwhitworth/golearn/base"
+ "github.com/sjwhitworth/golearn/evaluation"
+ "github.com/sjwhitworth/golearn/knn"
+ 
+)
+
+
+
+```
