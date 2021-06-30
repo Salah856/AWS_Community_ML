@@ -97,6 +97,41 @@ func main() {
 
 defer f.Close()
 
+```
+
+
+## Regression
+Regression is a statistical method for calculating relationships among variables. This section will implement linear regression, which is the most popular and simplest regression technique and a very good way to understand your data. Note that regression techniques are not 100% accurate, even if you use higher-order (nonlinear) polynomials. The key with regression, as with most machine learning techniques, is to find a good enough technique and not the perfect technique and model.
+
+
+### Linear regression
+
+The idea behind linear regression is simple: you are trying to model your data using a first-degree equation. A first-degree equation can be represented as y = a x + b .
+
+There are many methods that allow you to find out that first-degree equation that will model your data – all techniques calculate a and b .
+
+### Implementing linear regression
+
+The Go code of this section will be saved in regression.go , which is going to be presented in three parts. The output of the program will be two floating-point numbers that define a and b in the first-degree equation.
+
+The first part of regression.go contains the following code:
+
+
+```go 
+
+package main
+
+
+import (
+  "encoding/csv"
+  "flag"
+  "fmt"
+  "gonum.org/v1/gonum/stat"
+  "os"
+  "strconv"
+)
+
 
 
 ```
+
