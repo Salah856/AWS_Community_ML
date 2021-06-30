@@ -198,39 +198,5 @@ fmt.Printf("a = %.4v b = %.4v\n", a, b)
 
 ```
 
+## Classification
 
-## Plotting data
-
-It is now time to plot the results and the dataset in order to test how accurate the results from the linear regression technique are. For that purpose, we are going to use the Go code of plotLR.go , which will be presented in four parts. plotLR.go requires three command-line arguments, which are a and b from the y = a x + b formula, and the file that contains the data points. The fact that plotLR.go does not calculate a and b on its own gives you the opportunity to experiment with a and b using your own values or values that were calculated by another utility.
-
-
-```go 
-
-package main
-import (
-"encoding/csv"
-"flag"
-"fmt"
-"gonum.org/v1/plot"
-"gonum.org/v1/plot/plotter"
-"gonum.org/v1/plot/vg"
-"image/color"
-"os"
-"strconv"
-)
-type xy struct {
-x []float64
-y []float64
-}
-func (d xy) Len() int {
-return len(d.x)
-}
-func (d xy) XY(i int) (x, y float64) {
-x = d.x[i]
-y = d.y[i]
-return
-}
-
-
-
-```
