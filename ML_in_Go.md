@@ -253,3 +253,33 @@ cls := knn.NewKnnClassifier("euclidean", "linear", k)
 
 
 ```
+
+
+The knn.NewKnnClassifier() method returns a new classifier. The last parameter of the function is the number of neighbors that the classifier will have.
+
+The final part of classify.go is as follows:
+
+```go 
+
+train, test := base.InstancesTrainTestSplit(rawData, 0.50)
+cls.Fit(train)
+
+p, err := cls.Predict(test)
+ if err != nil {
+ fmt.Println(err)
+ return
+}
+
+confusionMat, err := evaluation.GetConfusionMatrix(test, p)
+
+if err != nil {
+ fmt.Println(err)
+ return
+}
+
+fmt.Println(evaluation.GetSummary(confusionMat))
+
+
+```
+
+
