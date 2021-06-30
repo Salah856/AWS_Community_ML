@@ -50,5 +50,18 @@ func meanValue(x []float64) float64 {
 }
 
 
+func medianValue(x []float64) float64 {
+
+ length := len(x)
+ if length%2 == 1 {
+ // Odd
+  return x[(length-1)/2]
+ } else {
+  // Even
+   return (x[length/2] + x[(length/2)-1]) / 2
+ }
+  return 0
+}
+
 
 ```
