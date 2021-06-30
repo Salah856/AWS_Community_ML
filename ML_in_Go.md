@@ -131,6 +131,11 @@ import (
   "strconv"
 )
 
+type xy struct {
+  x []float64
+  y []float64
+}
+
 
 
 ```
