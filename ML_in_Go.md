@@ -75,4 +75,28 @@ func variance(x []float64) float64 {
   return sum / float64(len(x))
 }
 
+
+func main() {
+
+  flag.Parse()
+
+  if len(flag.Args()) == 0 {
+
+  fmt.Printf("usage: stats filename\n")
+   return
+ }
+
+  data := make([]float64, 0)
+  file := flag.Args()[0]
+
+ f, err := os.Open(file)
+  if err != nil {
+   fmt.Println(err)
+     return
+ }
+
+defer f.Close()
+
+
+
 ```
