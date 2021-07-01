@@ -285,8 +285,13 @@ fmt.Println(evaluation.GetSummary(confusionMat))
 
 ## Working with tensorflow
 
+TensorFlow is a rather famous open-source platform for machine learning. In order to use TensorFlow with Go, you will first need to download a Go package:
 
+```
 
+ $ go get github.com/tensorflow/tensorflow/tensorflow/go
+
+```
 
 
 
