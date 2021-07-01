@@ -294,6 +294,32 @@ TensorFlow is a rather famous open-source platform for machine learning. In orde
 ```
 
 
+However, for the aforementioned command to work, the C interface for TensorFlow should be already installed. On a macOS Mojave machine, this can be installed as follows:
+
+```
+$ brew install tensorflow
+
+```
+
+
+If the C interface is not installed, and you try to install the Go package for TensorFlow, you will get the following error message:
+
+```
+
+$ go get github.com/tensorflow/tensorflow/tensorflow/go
+# github.com/tensorflow/tensorflow/tensorflow/go
+
+ld: library not found for -ltensorflow clang: error: linker command failed with exit code 1 (use -v to see invocation)
+```
+
+As TensorFlow is pretty complex, it would be good to execute the following command in order to validate your installation:
+
+```
+$ go test github.com/tensorflow/tensorflow/tensorflow/go
+
+ok github.com/tensorflow/tensorflow/tensorflow/go  0.109s
+
+```
 
 
 
