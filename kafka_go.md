@@ -1,5 +1,5 @@
 
-# Dealing with Kafka with Go 
+# Dealing with Kafka using Golang 
 
 In this article, you will learn how to write and read JSON records using Kafka. Its name was inspired by the author Franz Kafka, because Kafka software is optimized for writing. Kafka is written in Scala and Java. It was originally developed by LinkedIn and donated to the Apache Software Foundation back in 2011. Kafka's design was influenced by transaction logs.
 
