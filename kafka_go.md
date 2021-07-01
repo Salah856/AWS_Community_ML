@@ -1,4 +1,4 @@
 
-# Handling Kafka with Go 
+# Dealing with Kafka with Go 
 
 
