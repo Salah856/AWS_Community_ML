@@ -59,5 +59,44 @@ type Record struct {
 func random(min, max int) int {
   return rand.Intn(max-min) + min
 }
+```
+
+The Record structure is used to store the data that will be written to the desired Kafka topic. The third part of writeKafka.go contains the following Go code:
+
+```go 
+
+partition := 0
+
+conn, err := kafka.DialLeader(context.Background(), "tcp", "localhost:9092", topic, partition)
+
+if err != nil {
+
+ fmt.Printf("%s\n", err)
+  return
+}
+
+rand.Seed(time.Now().Unix())
 
 
+for i := 0; i < TOTAL; i++ {
+ 
+ myrand := random(MIN, MAX)
+ temp := Record{strconv.Itoa(i), myrand}
+ recordJSON, _ := json.Marshal(temp)
+ 
+ conn.SetWriteDeadline(time.Now().Add(1 * time.Second))
+ conn.WriteMessages( kafka.Message{Value: []byte(recordJSON)},)
+ 
+ if i%50 == 0 {
+  fmt.Print(".")
+ }
+  time.Sleep(10 * time.Millisecond)
+ }
+
+ fmt.Println()
+ conn.Close()
+
+}
+
+
+```
