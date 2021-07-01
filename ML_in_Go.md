@@ -283,8 +283,7 @@ fmt.Println(evaluation.GetSummary(confusionMat))
 ```
 
 
-## Clustering 
-
+## Working with tensorflow
 
 
 
