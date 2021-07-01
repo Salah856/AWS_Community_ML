@@ -5,6 +5,7 @@ In this article, you will learn how to write and read JSON records using Kafka. 
 
 The main advantage of Kafka is that it can be used to store lots of data fast, which might interest you when you have to work with huge amounts of real-time data. However, its disadvantage is that in order to maintain that speed, the data is read-only and stored in a naive way.
 
+## Write to Kafka 
 
 The following program, which is named writeKafka.go , will illustrate how to write data to Kafka. In Kafka terminology, writeKafka.go is a producer. The utility will be presented in three parts.
 
@@ -97,6 +98,70 @@ for i := 0; i < TOTAL; i++ {
  conn.Close()
 
 }
+
+
+```
+
+## Read from Kafka 
+
+
+The following Go program, which is named readKafka.go , will illustrate how to write data to Kafka. Programs that read data from Kafka are called consumers in Kafka terminology.
+
+```go 
+
+
+package main
+
+import (
+ "context"
+ "encoding/json"
+ "fmt"
+ "github.com/segmentio/kafka-go"
+ "os"
+)
+
+
+type Record struct {
+ Name string `json:"name"`
+ Random int `json:"random"`
+}
+
+
+func main() {
+ if len(os.Args) < 2 {
+  fmt.Println("Need a Kafka topic name.")
+  return
+ }
+
+ partition := 0
+ topic := os.Args[1]
+ fmt.Println("Kafka topic:", topic
+
+
+ r := kafka.NewReader(kafka.ReaderConfig{ Brokers: []string{"localhost:9092"}, Topic: topic, Partition: partition, MinBytes: 10e3, MaxBytes: 10e6, })
+ 
+ r.SetOffset(0)
+ 
+ for {
+   m, err := r.ReadMessage(context.Background())
+   
+   if err != nil {
+    break
+   }
+ fmt.Printf("message at offset %d: %s = %s\n", m.Offset,string(m.Key), string(m.Value))
+ 
+ temp := Record{}
+ err = json.Unmarshal(m.Value, &temp)
+ 
+ if err != nil {
+  fmt.Println(err)
+ }
+ fmt.Printf("%T\n", temp)
+
+ }
+ r.Close()
+}
+
 
 
 ```
