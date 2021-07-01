@@ -26,6 +26,23 @@ import (
 )
 
 
+func main() {
+ MIN := 0
+ MAX := 0
+ TOTAL := 0
+ topic := ""
+
+ if len(os.Args) > 4 {
+  MIN, _ = strconv.Atoi(os.Args[1])
+  MAX, _ = strconv.Atoi(os.Args[2])
+  TOTAL, _ = strconv.Atoi(os.Args[3])
+  topic = os.Args[4]
+ } else {
+
+  fmt.Println("Usage:", os.Args[0], "MIX MAX TOTAL TOPIC")
+   return
+ }
+
 
 ```
 
